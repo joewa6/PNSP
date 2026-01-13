@@ -1,0 +1,24 @@
+Day 3 — Stage D reduce minimal + HPC skeleton + GitHub hardening
+Deliverables
+
+Stage D can:
+
+read from stageC_archive/views/runs/...
+
+compute one metric + write outputs
+
+write metrics back into Composer state (or into run_stats.json per ligand)
+
+Stage B HPC skeleton exists (even if you don’t run it today):
+
+templates + staging + syncback script
+
+Private GitHub repo pushed with:
+
+README: how to rebuild / run test / where data lives
+
+rules of the lab
+
+pinned env instructions
+
+You end Day 3 with: “test.csv → build → run (local) → archive → view → reduce → rank table.”

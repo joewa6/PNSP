@@ -1,0 +1,48 @@
+Day 2 — Wire Stage C to real legacy + make B archive properly (WD8/HPC ready)
+Deliverables
+
+Stage C can index:
+
+legacy WD8 raw + processed roots (yesterday’s functionality)
+
+new v2 runs from A/B
+
+Stage B has explicit sync_to_archive() logic (rsync baked in)
+
+A produces a build manifest for multiple ligands from test.csv
+
+B can run N ligands in local mode and archive them without manual steps
+
+Steps
+
+Stage C pointers become authoritative
+
+Orchestra/stageC_archive/pointers/ contains:
+
+legacy_wd8_raw.txt
+
+legacy_ws_processed.txt (or wherever processed lives)
+
+v2_archive_local.txt
+
+later: v2_archive_hpc.txt
+
+Modify Composer ledger builder to scan multiple roots
+
+But keep your schema and merge logic.
+
+Add origin column (legacy vs v2).
+
+Stage B local runner does:
+
+run -> validate required files -> rsync archive -> write manifest -> return archive path
+
+Stage A import-smiles
+
+minimal script that reads CSV:
+
+produces per-ligand build folders + run_manifest.json
+
+do NOT design a database yet.
+
+You end Day 2 with: “v2 runs land in a declared archive root, and Composer sees both legacy + v2.”

@@ -1,0 +1,22 @@
+# --- DATA / EVIDENCE ---
+Orchestra/stageC_archive/views/runs/
+Orchestra/stageD_reduce/cache/
+Orchestra/stageD_reduce/outputs/
+
+**/*.nc
+**/*.rst
+**/*.out
+**/*.parquet
+**/*.csv
+**/*.log
+**/*.pdb
+**/*.prmtop
+**/*.inpcrd
+**/*.mdcrd
+**/*.dcd
+**/*.xtc
+
+# builder/sim scratch
+**/work/
+**/builds/
+**/__pycache__/

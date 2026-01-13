@@ -1,0 +1,48 @@
+This will be where we keep the full plan for the creation fo the whole directory and pipeline. Everything. 
+We keep logs abotu what changes and what we have done. WHat needs to be done etc. 
+We should probably set up clear git/github.
+
+
+What you need in 3 days is two things in parallel:
+
+Composer + Stage C view stays the spine (already proven).
+
+Orchestra stages A/B/D are ported as “workers” and then registered into Stage C and summarised by Composer.
+
+Key principle: Stage code is allowed to be messy internally. The only requirement is it speaks the interface:
+
+A produces a run package (prmtop/inpcrd + metadata)
+
+B consumes a run package and produces raw evidence (prod.nc/out + metadata)
+
+C indexes + exposes evidence via views/runs/...
+
+D consumes only from C view and produces tables/plots + metrics back into Composer state
+
+So: we port the old code, but we wrap it, not rewrite it.
+
+The missing piece: a minimal contract between stages
+
+You will drown unless you standardise exactly one “thing” that moves between A→B→C→D:
+
+run_manifest.json (one per replicate)
+
+Lives alongside the system files / run folder. Minimum fields:
+
+{
+  "project": "PET_SCREENING",
+  "ligand_norm": "diuron",
+  "charge": -50,
+  "replica": "rep1",
+  "smiles": "...",
+  "builder": {"git_commit": "...", "timestamp": "..."},
+  "simulator": {"engine": "amber", "settings_id": "local_tiny_v1"},
+  "paths": {
+    "build_dir": "...",
+    "run_dir": "...",
+    "archive_dir": "..."
+  }
+}
+
+
+Composer doesn’t need to understand AMBER. It needs to understand runs

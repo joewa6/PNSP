@@ -1,0 +1,54 @@
+Day 1 — Port Stage A and Stage B as-is, wrap them, run 1 tiny end-to-end locally
+Deliverables
+
+Orchestra/stageA_builder/ contains the old builder code, runnable in-place
+
+Orchestra/stageB_simulator/local/ contains the old local sim runner, runnable
+
+One ligand from SMILES → build → tiny sim → archived somewhere → visible via Stage C view
+
+run_manifest.json emitted
+
+Steps
+
+Copy, don’t refactor
+
+Put your existing builder repo/scripts into:
+
+Orchestra/stageA_builder/src/ (plus env/requirements if needed)
+
+Put your existing simulator runner scripts into:
+
+Orchestra/stageB_simulator/local/src/
+
+Orchestra/stageB_simulator/templates/ for mdin templates
+
+Decide the “build output format”
+
+One ligand build creates:
+
+builds/<ligand_norm>/ containing system.prmtop, system.inpcrd, ligand files, plus run_manifest.json template.
+
+Define a local run working dir
+
+stageB_simulator/local/work/<ligand_norm>/<rep>/
+
+B copies in build artifacts, runs, writes outputs, writes/updates run_manifest.json.
+
+Archive target (for now)
+
+For Day 1 local test, you can archive to a local “toy archive root” under MSE_LAB:
+
+Orchestra/stageC_archive/pointers/archive_local_test.txt
+
+points to Orchestra/stageC_archive/archive_local_test_root/
+
+This avoids touching WD8 while plumbing is fragile.
+
+Composer rebuild indexes this test archive
+
+Stage C view should show the new test run under views/runs/...
+
+That proves A/B can feed the spine.
+
+You end Day 1 with: “I can run one ligand end-to-end locally, and it appears in Stage C view.”

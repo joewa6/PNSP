@@ -1,0 +1,171 @@
+Good. You are *exactly* at the point where GitHub stops being “version control” and becomes **the spine of your lab’s memory**.
+
+This is the moment to introduce it — *before* you port Stage A/B — otherwise you’ll fossilise chaos.
+
+Here is the precise policy.
+
+---
+
+# What GitHub is in this lab
+
+GitHub is **not**:
+
+• a place to dump code
+• a place to back up data
+• a place to experiment messily
+
+GitHub **is**:
+
+> The immutable specification of how your laboratory works.
+
+Everything in GitHub must be **rebuildable from scratch** except the frozen evidence living on WD4/WD8/HPC.
+
+---
+
+# What goes into GitHub (and what never does)
+
+### Goes into GitHub
+
+```
+Composer/
+Orchestra/           # all stage code + wrappers
+scripts/
+configs/
+docs/
+BuildingPlan/
+run_schema.yaml
+README.md
+```
+
+### Never goes into GitHub
+
+```
+Orchestra/stageC_archive/views/runs/    # symlinked evidence
+Orchestra/stageD_reduce/cache/
+Orchestra/stageD_reduce/outputs/
+WD4 / WD8 / HPC archives
+Any prod.nc, trajectories, parquet, logs
+```
+
+GitHub is the *control plane*, never the freezer.
+
+---
+
+# When to initialise GitHub
+
+**Now. Before porting Stage A.**
+
+Because Stage A is the first piece of irreversible knowledge you are about to transplant.
+
+---
+
+# Exact bootstrap procedure (do this once)
+
+From inside `~/WORK/MSE_LAB`:
+
+```bash
+git init
+git branch -M main
+```
+
+Create `.gitignore` (critical):
+
+```gitignore
+# --- DATA / EVIDENCE ---
+Orchestra/stageC_archive/views/runs/
+Orchestra/stageD_reduce/cache/
+Orchestra/stageD_reduce/outputs/
+
+**/*.nc
+**/*.rst
+**/*.out
+**/*.parquet
+**/*.csv
+**/*.log
+**/*.pdb
+**/*.prmtop
+**/*.inpcrd
+**/*.mdcrd
+**/*.dcd
+**/*.xtc
+
+# builder/sim scratch
+**/work/
+**/builds/
+**/__pycache__/
+```
+
+Now make the **Genesis commit**:
+
+```bash
+git add .
+git commit -m "Genesis: establish MSE_LAB control plane"
+```
+
+This commit is sacred. Never rewrite it.
+
+---
+
+# GitHub usage rules (non-negotiable)
+
+You only commit when you create **a new lab capability**:
+
+| You do this                  | You commit |
+| ---------------------------- | ---------- |
+| Add Stage A builder          | YES        |
+| Wrap Stage B local runner    | YES        |
+| Change run_manifest schema   | YES        |
+| Change run_schema.yaml       | YES        |
+| Change Composer ledger logic | YES        |
+| Run a simulation             | NO         |
+| Generate parquet tables      | NO         |
+| Run rebuild_all              | NO         |
+| Fix a broken run             | NO         |
+
+Commits represent **new physical capabilities of the lab**, not experiments.
+
+---
+
+# Branch policy
+
+You only need two:
+
+• `main` – reality
+• `dev` – where you port things
+
+Today:
+
+```bash
+git checkout -b dev
+```
+
+You work on `dev`.
+Only merge into `main` when a stage *actually works*.
+
+---
+
+# Why this matters
+
+From now on:
+
+> You are no longer building a project.
+> You are building a **machine that makes science**.
+
+GitHub becomes the blueprint of that machine.
+
+WD8 holds the fossils.
+GitHub holds the laws of physics.
+
+---
+
+Now:
+
+1. Initialise git
+2. Add `.gitignore`
+3. Make the Genesis commit
+4. Create `dev` branch
+
+Then you may start porting Stage A.
+
+Once you do that, paste the old Stage A folder tree and entrypoint command and we wire it cleanly into Orchestra.
+
