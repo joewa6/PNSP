@@ -1,0 +1,175 @@
+# GitHub Project Board Setup
+
+**Reality check**: This is how the Kanban board gets created. Do this once, then forget about it.
+
+---
+
+## Quick setup (automated)
+
+```bash
+# 1. Refresh GitHub token with project scope
+gh auth refresh -s project
+
+# 2. Run the automation script
+./scripts/create_github_project.sh
+```
+
+This will:
+- Create project "MSE_LAB Bootstrap"
+- Add all 16 issues to it
+- Give you a URL to the board
+
+---
+
+## Manual setup (if script fails)
+
+### 1. Create the project
+
+Go to: https://github.com/joewa6?tab=projects
+
+1. Click **"New project"**
+2. Choose **"Board"** template
+3. Name it: **"MSE_LAB Bootstrap"**
+4. Click **"Create project"**
+
+---
+
+### 2. Configure Status field
+
+The Board template includes a "Status" field by default.
+
+Edit it to have these columns (in order):
+
+1. **Backlog**
+2. **Day 1**
+3. **Day 2**
+4. **Day 3**
+5. **Review**
+6. **Done**
+
+Delete any default columns you don't need (e.g., "Todo", "In Progress").
+
+---
+
+### 3. Add issues to project
+
+Two ways:
+
+**Option A: Bulk add via UI**
+1. In project board, click **"+ Add item"**
+2. Search for repository: `joewa6/MSE_LAB`
+3. Select all issues (or use filters like `is:issue is:open`)
+4. Add them
+
+**Option B: Add individually**
+- From any issue page, click **"Projects"** in right sidebar
+- Select "MSE_LAB Bootstrap"
+
+---
+
+### 4. Assign issues to columns
+
+Drag issues to the correct columns, or bulk-edit the Status field:
+
+| Column | Issues |
+|--------|--------|
+| **Day 1** | #1, #2, #3, #4, #5 |
+| **Day 2** | #6, #7, #8, #9, #10 |
+| **Day 3** | #11, #12, #13, #14, #15, #16 |
+
+---
+
+## How to use the board
+
+### Moving issues
+
+Drag cards between columns as work progresses:
+
+```
+Backlog → Day N → Review → Done
+```
+
+### Filtering
+
+Use GitHub's built-in filters:
+
+- `label:critical` — Show only blocking issues
+- `label:day1` — Show Day 1 issues
+- `label:stageA` — Show builder-related issues
+
+### Closing issues
+
+When acceptance criteria are met:
+1. Move to **Done** column
+2. Close the issue (auto-closes when PR merged, or manually)
+3. Commit the capability to `dev` branch
+
+---
+
+## Board rules (non-negotiable)
+
+1. **Only move to Done when acceptance criteria are met**
+   - Run the "Done when" bash commands
+   - Verify they succeed
+   - Commit to `dev`
+
+2. **Review column is for validation**
+   - Smoke tests
+   - Integration checks
+   - PR review (if using PRs)
+
+3. **Don't create new issues without acceptance criteria**
+   - Use `.github/ISSUE_TEMPLATE/stage_capability.yml`
+   - Define exact "done when" commands
+   - Assign labels
+
+---
+
+## Why this board exists
+
+The board is an **execution view**, not a planning tool.
+
+It exists to:
+- Show current work-in-progress (WIP limit: 1-2 issues)
+- Track 3-day milestone progress
+- Prevent scope creep (if it's not in the blueprint, it doesn't go on the board)
+
+It is NOT:
+- A backlog of "someday" features
+- A place to bikeshed about architecture
+- A substitute for the actual code
+
+---
+
+## Current state check
+
+To verify board is working:
+
+```bash
+# List open issues
+gh issue list --limit 20
+
+# Check project exists
+gh project list --owner joewa6
+
+# View specific issue
+gh issue view 1
+```
+
+---
+
+## If you need to recreate the board
+
+Everything is scripted. Just run:
+
+```bash
+./scripts/create_github_labels.sh    # Creates 13 labels
+./scripts/create_github_issues.sh    # Creates 16 issues
+./scripts/create_github_project.sh   # Creates board + adds issues
+```
+
+Then manually configure the Status field columns in the web UI.
+
+---
+
+**That's it. The board is mechanical. The work is in the code.**
