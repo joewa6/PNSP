@@ -1,0 +1,20 @@
+name: Bug
+description: Something broken
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: repro
+    attributes:
+      label: Repro steps
+      placeholder: |
+        Command:
+        Expected:
+        Got:
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: OS/env, paths (no sensitive), recent commits

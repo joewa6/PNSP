@@ -1,0 +1,31 @@
+name: no-evidence
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Block evidence files
+        run: |
+          set -euo pipefail
+          bad=$(git ls-files | egrep -i '\.(nc|rst|mdout|mdcrd|dcd|xtc|trr|prmtop|inpcrd|parquet|csv)$' || true)
+          if [ -n "$bad" ]; then
+            echo "ERROR: Evidence files tracked by git:"
+            echo "$bad"
+            exit 1
+          fi
+
+      - name: Block StageC views
+        run: |
+          set -euo pipefail
+          bad2=$(git ls-files | grep -E '^Orchestra/stageC_archive/views/runs/' || true)
+          if [ -n "$bad2" ]; then
+            echo "ERROR: StageC views/runs is tracked by git:"
+            echo "$bad2"
+            exit 1
+          fi

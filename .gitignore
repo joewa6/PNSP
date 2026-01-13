@@ -1,22 +1,58 @@
-# --- DATA / EVIDENCE ---
+# ============================
+# EVIDENCE / FROZEN DATA
+# ============================
 Orchestra/stageC_archive/views/runs/
 Orchestra/stageD_reduce/cache/
 Orchestra/stageD_reduce/outputs/
 
+# ============================
+# STAGE WORK DIRECTORIES
+# ============================
+Orchestra/stageA_builder/**/builds/
+Orchestra/stageA_builder/**/work/
+Orchestra/stageB_simulator/**/runs/
+Orchestra/stageB_simulator/**/scratch/
+Orchestra/stageB_simulator/**/work/
+
+# ============================
+# SIMULATION / ANALYSIS FILES
+# ============================
 **/*.nc
 **/*.rst
-**/*.out
-**/*.parquet
-**/*.csv
-**/*.log
-**/*.pdb
-**/*.prmtop
-**/*.inpcrd
+**/*.rst7
+**/*.mdout
 **/*.mdcrd
 **/*.dcd
 **/*.xtc
+**/*.trr
+**/*.out
+**/*.log
+**/*.mdinfo
+**/*.prmtop
+**/*.inpcrd
+**/*.top
+**/*.crd
+**/*.pdb
+**/*.mol2
+**/*.sdf
 
-# builder/sim scratch
-**/work/
-**/builds/
+# ============================
+# TABLE / METRIC / CACHE
+# ============================
+**/*.parquet
+**/*.csv
+**/*.tsv
+**/*.pkl
+**/*.h5
+**/*.npz
+**/*.feather
+**/*.arrow
+**/*.sqlite
+**/*.duckdb
+
+# ============================
+# PYTHON / TEMP
+# ============================
 **/__pycache__/
+**/*.pyc
+**/*.swp

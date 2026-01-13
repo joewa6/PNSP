@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install minimal deps (if any)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f pyproject.toml ]; then pip install -e .; fi
+
+      - name: Python syntax check
+        run: |
+          python -m compileall -q .
+
+      - name: Smoke help (Composer CLI placeholder)
+        run: |
+          # adjust once you have a real entrypoint
+          test -d Composer

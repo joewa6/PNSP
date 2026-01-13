@@ -1,0 +1,41 @@
+name: Stage capability
+description: Add/modify a lab capability (A/B/C/D or Composer)
+title: "[capability] "
+labels: ["capability"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Composer
+        - stageA_builder
+        - stageB_simulator
+        - stageC_archive
+        - stageD_reduce
+        - docs/infra
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What capability exists after this?
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when (acceptance)
+      description: Concrete commands + expected outputs (no data)
+      placeholder: |
+        - `scripts/smoke_stageA.sh` succeeds
+        - emits run_manifest.json
+        - StageC rebuild exposes run under views/runs/...
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks / notes
+      description: Sharp edges, assumptions, legacy weirdness
