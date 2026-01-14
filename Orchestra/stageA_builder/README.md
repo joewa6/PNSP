@@ -40,6 +40,51 @@ python src/build.py --smiles "CCO" --output /path/to/output
 - If NP files not found: builds ligand-only system
 - If Epik unavailable: creates placeholder files
 
+### Batch Processing Mode (CSV)
+
+```bash
+python src/build.py --csv molecules.csv --output-dir ./batch_output
+```
+
+**CSV Format:**
+```csv
+Name,SMILES
+Ethanol,CCO
+Diuron,CC(C)Nc1nc(Cl)nc(NC(C)C)n1
+Caffeine,CN1C=NC2=C1C(=O)N(C(=O)N2C)C
+```
+
+**What it does:**
+- Processes multiple molecules from CSV file
+- Creates separate directory for each molecule
+- Handles errors gracefully (continues on failure)
+- Generates detailed batch summary report
+
+**Output Structure:**
+```
+batch_output/
+├── Ethanol/
+│   ├── system.prmtop
+│   ├── system.inpcrd
+│   └── run_manifest.json
+├── Diuron/
+│   ├── system.prmtop
+│   ├── system.inpcrd
+│   └── run_manifest.json
+├── Caffeine/
+│   ├── system.prmtop
+│   ├── system.inpcrd
+│   └── run_manifest.json
+└── batch_summary.json
+```
+
+**Batch Summary (`batch_summary.json`):**
+- Total molecules processed
+- Success/failure/skipped counts
+- Detailed error messages for failures
+- Output directory paths
+- Timestamp and git commit info
+
 ### Dry Run
 
 ```bash

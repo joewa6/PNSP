@@ -1,5 +1,43 @@
 # Refactoring Changelog
 
+## 2026-01-14: CSV Batch Processing Mode Added
+
+### New Feature: Batch Processing
+
+**Added `--csv` flag for high-throughput processing:**
+- Process multiple molecules from CSV file in one run
+- CSV format: `Name,SMILES` columns
+- Creates separate output directory for each molecule
+- Graceful error handling (continues on failures)
+- Generates comprehensive `batch_summary.json` report
+
+**Usage:**
+```bash
+# Single molecule mode (original)
+python src/build.py --smiles "CCO" --output /path/to/output
+
+# NEW: Batch mode
+python src/build.py --csv molecules.csv --output-dir ./batch_output
+```
+
+**Batch Summary Report Includes:**
+- Total molecules processed
+- Success/failure/skipped statistics
+- Detailed error messages for failed builds
+- Output directory paths for successful builds
+- Timestamp and git commit information
+
+**Benefits:**
+- High-throughput screening capability
+- Automatic parallelization opportunity (future)
+- Centralized error tracking
+- No manual scripting required
+
+**Backward Compatibility:**
+- Single `--smiles` mode unchanged
+- Mutually exclusive input modes (--smiles OR --csv)
+- All existing functionality preserved
+
 ## 2026-01-14: Production Release - Single File Implementation
 
 ### Final Consolidation
@@ -11,7 +49,7 @@
 - All helper functions (`runp`, `epikx_best_state_as_sdf`, `write_mol_files`, `prepare_ligand_assets`) are now internal
 
 **Current Structure:**
-- `src/build.py` (720 lines) - **SINGLE PRODUCTION FILE** with full Epik + NP complex pipeline
+- `src/build.py` (1000+ lines) - **SINGLE PRODUCTION FILE** with full Epik + NP complex pipeline + CSV batch mode
 - All legacy files removed for clean production codebase
 
 **Functions Integrated:**
@@ -22,6 +60,7 @@
 - `_build_np_complex()` - Complete NP assembly pipeline
 - `_build_ligand_only_system()` - Fallback ligand system
 - `_build_simple_ligand_system()` - Placeholder fallback
+- `process_csv_batch()` - NEW: CSV batch processing
 
 ### File Reorganization
 

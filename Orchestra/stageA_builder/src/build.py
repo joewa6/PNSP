@@ -632,11 +632,187 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         prog="stageA_builder",
         description="Stage A builder: construct ligand system inputs and emit run manifest.",
     )
-    p.add_argument("--smiles", required=True, help="Ligand SMILES string.")
-    p.add_argument("--output", required=True, help="Output directory for this build.")
+    
+    # Mutually exclusive group for input mode
+    input_group = p.add_mutually_exclusive_group(required=True)
+    input_group.add_argument("--smiles", help="Ligand SMILES string (single molecule mode).")
+    input_group.add_argument("--csv", help="CSV file with Name,SMILES columns (batch mode).")
+    
+    p.add_argument("--output", help="Output directory for single molecule build.")
+    p.add_argument("--output-dir", help="Output root directory for batch builds (CSV mode).")
     p.add_argument("--templates", default=None, help="Optional templates dir.")
     p.add_argument("--dry-run", action="store_true", help="Skip actual file generation.")
     return p.parse_args(argv)
+
+
+def process_csv_batch(
+    csv_path: pathlib.Path,
+    output_root: pathlib.Path,
+    templates_dir: pathlib.Path,
+    git_commit: str,
+    dry_run: bool = False,
+) -> dict[str, Any]:
+    """
+    Process multiple molecules from CSV file.
+    
+    Returns batch summary with success/failure counts.
+    """
+    import csv
+    
+    # Validate CSV
+    if not csv_path.exists():
+        raise FileNotFoundError(f"CSV file not found: {csv_path}")
+    
+    # Read CSV
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        if 'Name' not in reader.fieldnames or 'SMILES' not in reader.fieldnames:
+            raise ValueError("CSV must contain 'Name' and 'SMILES' columns")
+        rows = list(reader)
+    
+    if not rows:
+        raise ValueError("CSV file is empty")
+    
+    print(f"📊 Processing {len(rows)} molecules from {csv_path.name}\n")
+    
+    # Track results
+    results = {
+        'total': len(rows),
+        'successful': [],
+        'failed': [],
+        'skipped': [],
+    }
+    
+    # Process each molecule
+    for idx, row in enumerate(rows, 1):
+        name = row.get('Name', '').strip()
+        smiles = row.get('SMILES', '').strip()
+        
+        if not name or not smiles:
+            print(f"⏭️  [{idx}/{len(rows)}] Skipping row with empty Name or SMILES")
+            results['skipped'].append({
+                'row': idx,
+                'name': name or 'EMPTY',
+                'smiles': smiles or 'EMPTY',
+                'reason': 'Empty name or SMILES'
+            })
+            continue
+        
+        # Create safe directory name from molecule name
+        safe_name = name.replace(' ', '_').replace(',', '').replace('/', '_')
+        mol_output_dir = output_root / safe_name
+        
+        print(f"🔬 [{idx}/{len(rows)}] Processing: {name} ({smiles})")
+        
+        try:
+            # Normalize SMILES
+            smiles_norm = normalize_smiles(smiles)
+            ligand_norm = ligand_id_from_smiles(smiles_norm)
+            
+            # Create output directory
+            safe_mkdir(mol_output_dir)
+            
+            # Run builder
+            outputs = run_builder(
+                smiles_norm=smiles_norm,
+                out_dir=mol_output_dir,
+                templates_dir=templates_dir,
+                dry_run=dry_run,
+            )
+            
+            # Verify outputs
+            if not dry_run:
+                missing = [p for p in (outputs.topology, outputs.coords) if not p.exists()]
+                if missing:
+                    raise RuntimeError(f"Builder reported outputs but files are missing: {missing}")
+            
+            # Write manifest
+            write_manifest(
+                out_dir=mol_output_dir,
+                smiles_in=smiles,
+                smiles_norm=smiles_norm,
+                ligand_norm=ligand_norm,
+                outputs=outputs,
+                git_commit=git_commit,
+                status="complete",
+            )
+            
+            results['successful'].append({
+                'row': idx,
+                'name': name,
+                'smiles': smiles,
+                'output_dir': str(mol_output_dir.relative_to(output_root)),
+            })
+            
+            print(f"   ✅ Success: {mol_output_dir.name}")
+            
+        except Exception as e:
+            error_msg = str(e)
+            print(f"   ❌ Failed: {error_msg}")
+            
+            # Try to write failure manifest
+            try:
+                safe_mkdir(mol_output_dir)
+                smiles_norm_fallback = smiles
+                ligand_norm_fallback = ligand_id_from_smiles(smiles_norm_fallback) if smiles else "unknown"
+                
+                dummy_outputs = BuildOutputs(
+                    topology=mol_output_dir / "topology.prmtop",
+                    coords=mol_output_dir / "coords.inpcrd",
+                )
+                write_manifest(
+                    out_dir=mol_output_dir,
+                    smiles_in=smiles,
+                    smiles_norm=smiles_norm_fallback,
+                    ligand_norm=ligand_norm_fallback,
+                    outputs=dummy_outputs,
+                    git_commit=git_commit,
+                    status="failed",
+                )
+            except Exception:
+                pass
+            
+            results['failed'].append({
+                'row': idx,
+                'name': name,
+                'smiles': smiles,
+                'error': error_msg,
+            })
+        
+        print()  # Blank line between molecules
+    
+    # Print summary
+    print("=" * 70)
+    print("📊 BATCH PROCESSING SUMMARY")
+    print("=" * 70)
+    print(f"Total molecules:    {results['total']}")
+    print(f"✅ Successful:      {len(results['successful'])}")
+    print(f"❌ Failed:          {len(results['failed'])}")
+    print(f"⏭️  Skipped:         {len(results['skipped'])}")
+    print("=" * 70)
+    
+    # Write batch summary
+    summary = {
+        'csv_file': str(csv_path),
+        'output_directory': str(output_root),
+        'timestamp': iso_now_utc(),
+        'git_commit': git_commit,
+        'statistics': {
+            'total': results['total'],
+            'successful': len(results['successful']),
+            'failed': len(results['failed']),
+            'skipped': len(results['skipped']),
+        },
+        'successful_builds': results['successful'],
+        'failed_builds': results['failed'],
+        'skipped_rows': results['skipped'],
+    }
+    
+    summary_path = output_root / "batch_summary.json"
+    summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    print(f"\n📝 Batch summary written to: {summary_path}\n")
+    
+    return summary
 
 
 def main(argv: list[str]) -> int:
@@ -650,68 +826,108 @@ def main(argv: list[str]) -> int:
         else (this_file.parent / "templates").resolve()
     )
 
-    out_dir = pathlib.Path(args.output).expanduser().resolve()
-    safe_mkdir(out_dir)
-
     repo_root = find_repo_root(stageA_root)
     git_commit = get_git_commit(repo_root)
 
-    smiles_in = args.smiles
-    try:
-        smiles_norm = normalize_smiles(smiles_in)
-        ligand_norm = ligand_id_from_smiles(smiles_norm)
-
-        outputs = run_builder(
-            smiles_norm=smiles_norm,
-            out_dir=out_dir,
-            templates_dir=templates_dir,
-            dry_run=args.dry_run,
-        )
-
-        if not args.dry_run:
-            missing = [p for p in (outputs.topology, outputs.coords) if not p.exists()]
-            if missing:
-                raise RuntimeError(f"Builder reported outputs but files are missing: {missing}")
-
-        write_manifest(
-            out_dir=out_dir,
-            smiles_in=smiles_in,
-            smiles_norm=smiles_norm,
-            ligand_norm=ligand_norm,
-            outputs=outputs,
-            git_commit=git_commit,
-            status="complete",
-        )
-
-        return 0
-
-    except Exception as e:
+    # ========================================================================
+    # CSV BATCH MODE
+    # ========================================================================
+    if args.csv:
+        # Validate output directory
+        if not args.output_dir:
+            sys.stderr.write("ERROR: --output-dir is required when using --csv mode\n")
+            return 1
+        
+        csv_path = pathlib.Path(args.csv).expanduser().resolve()
+        output_root = pathlib.Path(args.output_dir).expanduser().resolve()
+        safe_mkdir(output_root)
+        
         try:
-            smiles_norm_fallback = smiles_in.strip()
-            ligand_norm_fallback = (
-                ligand_id_from_smiles(smiles_norm_fallback)
-                if smiles_norm_fallback
-                else "unknown"
+            summary = process_csv_batch(
+                csv_path=csv_path,
+                output_root=output_root,
+                templates_dir=templates_dir,
+                git_commit=git_commit,
+                dry_run=args.dry_run,
+            )
+            
+            # Return non-zero if any builds failed
+            if summary['statistics']['failed'] > 0:
+                return 1
+            return 0
+            
+        except Exception as e:
+            sys.stderr.write(f"[stageA_builder] CSV BATCH ERROR: {e}\n")
+            return 2
+
+    # ========================================================================
+    # SINGLE MOLECULE MODE
+    # ========================================================================
+    else:
+        # Validate output directory
+        if not args.output:
+            sys.stderr.write("ERROR: --output is required when using --smiles mode\n")
+            return 1
+        
+        out_dir = pathlib.Path(args.output).expanduser().resolve()
+        safe_mkdir(out_dir)
+
+        smiles_in = args.smiles
+        try:
+            smiles_norm = normalize_smiles(smiles_in)
+            ligand_norm = ligand_id_from_smiles(smiles_norm)
+
+            outputs = run_builder(
+                smiles_norm=smiles_norm,
+                out_dir=out_dir,
+                templates_dir=templates_dir,
+                dry_run=args.dry_run,
             )
 
-            dummy_outputs = BuildOutputs(
-                topology=out_dir / "topology.prmtop",
-                coords=out_dir / "coords.inpcrd",
-            )
+            if not args.dry_run:
+                missing = [p for p in (outputs.topology, outputs.coords) if not p.exists()]
+                if missing:
+                    raise RuntimeError(f"Builder reported outputs but files are missing: {missing}")
+
             write_manifest(
                 out_dir=out_dir,
                 smiles_in=smiles_in,
-                smiles_norm=smiles_norm_fallback,
-                ligand_norm=ligand_norm_fallback,
-                outputs=dummy_outputs,
+                smiles_norm=smiles_norm,
+                ligand_norm=ligand_norm,
+                outputs=outputs,
                 git_commit=git_commit,
-                status="failed",
+                status="complete",
             )
-        except Exception:
-            pass
 
-        sys.stderr.write(f"[stageA_builder] ERROR: {e}\n")
-        return 2
+            return 0
+
+        except Exception as e:
+            try:
+                smiles_norm_fallback = smiles_in.strip()
+                ligand_norm_fallback = (
+                    ligand_id_from_smiles(smiles_norm_fallback)
+                    if smiles_norm_fallback
+                    else "unknown"
+                )
+
+                dummy_outputs = BuildOutputs(
+                    topology=out_dir / "topology.prmtop",
+                    coords=out_dir / "coords.inpcrd",
+                )
+                write_manifest(
+                    out_dir=out_dir,
+                    smiles_in=smiles_in,
+                    smiles_norm=smiles_norm_fallback,
+                    ligand_norm=ligand_norm_fallback,
+                    outputs=dummy_outputs,
+                    git_commit=git_commit,
+                    status="failed",
+                )
+            except Exception:
+                pass
+
+            sys.stderr.write(f"[stageA_builder] ERROR: {e}\n")
+            return 2
 
 
 if __name__ == "__main__":
