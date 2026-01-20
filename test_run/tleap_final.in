@@ -1,0 +1,16 @@
+source leaprc.gaff2
+source leaprc.water.tip3p
+loadamberparams /home/jwallace-iit.local/WORK/MSE_LAB/Orchestra/stageA_builder/NP/NP_charged.frcmod
+loadamberparams /home/jwallace-iit.local/WORK/MSE_LAB/Orchestra/stageA_builder/NP/NP_neut.frcmod
+loadoff /home/jwallace-iit.local/WORK/MSE_LAB/Orchestra/stageA_builder/NP/NP_correct.lib
+NPu = copy NP
+loadamberparams LIG.frcmod
+loadoff LIG.lib
+LIGS = loadpdb ligands_only.pdb
+SYS = combine {NPu LIGS}
+solvatebox SYS TIP3PBOX 12.0
+addionsrand SYS Na+ 0
+addionsrand SYS Cl- 0
+saveamberparm SYS system.prmtop system.inpcrd
+savepdb SYS system_solvated.pdb
+quit

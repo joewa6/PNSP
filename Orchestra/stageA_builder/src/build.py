@@ -18,9 +18,11 @@ import json
 import os
 import pathlib
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
+import yaml
 from dataclasses import dataclass
 from typing import Any, List, Optional, Tuple
 
@@ -70,6 +72,74 @@ def find_repo_root(start: pathlib.Path) -> pathlib.Path:
             break
         cur = cur.parent
     return start.resolve()
+
+
+def load_np_profile(yaml_path: pathlib.Path) -> dict[str, Any]:
+    """Load and validate NP profile YAML configuration."""
+    if not yaml_path.exists():
+        raise FileNotFoundError(f"NP profile not found: {yaml_path}")
+    
+    with open(yaml_path, 'r') as f:
+        profile = yaml.safe_load(f)
+    
+    # Validate required fields
+    required_fields = ['profile_id', 'charge', 'files']
+    for field in required_fields:
+        if field not in profile:
+            raise ValueError(f"NP profile missing required field: {field}")
+    
+    required_files = ['lib', 'charged_frcmod', 'neut_frcmod', 'dry_pdb']
+    for file_key in required_files:
+        if file_key not in profile['files']:
+            raise ValueError(f"NP profile missing required file: {file_key}")
+    
+    return profile
+
+
+def resolve_np_files(np_profile_dir: pathlib.Path, profile: dict[str, Any]) -> dict[str, pathlib.Path]:
+    """Resolve NP file paths from profile configuration to absolute paths."""
+    np_files = {}
+    for key, rel_path in profile['files'].items():
+        abs_path = (np_profile_dir / rel_path).resolve()
+        if not abs_path.exists():
+            raise FileNotFoundError(f"NP file not found: {abs_path}")
+        np_files[key] = abs_path
+    return np_files
+
+
+def resolve_default_np_files(stageA_root: pathlib.Path) -> dict[str, pathlib.Path] | None:
+    """Return built-in NP files if present; otherwise None."""
+    np_dir = stageA_root / "NP"
+    req = {
+        "lib": np_dir / "NP_correct.lib",
+        "charged_frcmod": np_dir / "NP_charged.frcmod",
+        "neut_frcmod": np_dir / "NP_neut.frcmod",
+        "dry_pdb": np_dir / "NP_dry.pdb",
+    }
+    if all(p.exists() for p in req.values()):
+        return {k: v.resolve() for k, v in req.items()}
+    return None
+
+
+def generate_run_id(
+    project: str,
+    np_profile_id: str,
+    ligand_set: str,
+    git_commit: str
+) -> str:
+    """
+    Generate unique run identifier.
+    
+    Format: <timestamp>__<charge_state>__<ligand_set>__git-<commit>
+    Example: 2026-01-14T16-05-12Z__c50__example_ligands__git-a1b2c3d
+    """
+    timestamp = _dt.datetime.now(tz=_dt.timezone.utc).strftime("%Y-%m-%dT%H-%M-%SZ")
+    git_short = git_commit[:7] if len(git_commit) >= 7 else git_commit
+    
+    # Sanitize ligand_set name (remove special chars, spaces)
+    ligand_set_clean = re.sub(r'[^a-zA-Z0-9_-]', '_', ligand_set)
+    
+    return f"{timestamp}__{np_profile_id}__{ligand_set_clean}__git-{git_short}"
 
 
 def normalize_smiles(smiles: str) -> str:
@@ -328,11 +398,19 @@ class BuildOutputs:
 def run_builder(
     smiles_norm: str,
     out_dir: pathlib.Path,
-    templates_dir: pathlib.Path,
+    np_files: dict[str, pathlib.Path] | None = None,
+    templates_dir: pathlib.Path | None = None,
     dry_run: bool = False,
 ) -> BuildOutputs:
     """
     Full Epik-based builder with NP complex assembly.
+    
+    Args:
+        smiles_norm: Normalized SMILES string
+        out_dir: Output directory for build artifacts
+        np_files: Dictionary of NP force field files (lib, frcmod, pdb). If None, builds ligand-only.
+        templates_dir: Optional templates directory (currently unused)
+        dry_run: If True, skip actual file generation
     
     Workflow:
       1. Epik microstate enumeration
@@ -366,9 +444,13 @@ def run_builder(
         write_mol_files(best_mol, out_base)
         prepare_ligand_assets(out_dir, ligand_name, net_charge=formal_charge)
         
-        # STEP 3: Build NP complex
+        # STEP 3: Build NP complex (if NP files provided)
         print(f"\n🧩 STEP 3: Building NP complex...")
-        _build_np_complex(out_dir, ligand_copies=10)
+        if np_files:
+            _build_np_complex(out_dir, np_files, ligand_copies=10)
+        else:
+            print("   ⚠️  No NP files provided, building ligand-only system")
+            _build_ligand_only_system(out_dir)
         
         print(f"✅ Full Epik + NP pipeline complete: {top.name}, {crd.name}")
         
@@ -386,9 +468,19 @@ def run_builder(
     return BuildOutputs(topology=top, coords=crd)
 
 
-def _build_np_complex(out_dir: pathlib.Path, ligand_copies: int = 10) -> None:
+def _build_np_complex(
+    out_dir: pathlib.Path, 
+    np_files: dict[str, pathlib.Path],
+    ligand_copies: int = 10
+) -> None:
     """
     Build NP complex with ligands using packmol and tleap.
+    
+    Args:
+        out_dir: Output directory for build artifacts
+        np_files: Dictionary with keys 'lib', 'charged_frcmod', 'neut_frcmod', 'dry_pdb'
+                  Values are absolute paths to NP force field files
+        ligand_copies: Number of ligand molecules to pack around NP
     
     Steps:
       1. Load NP structure
@@ -396,31 +488,11 @@ def _build_np_complex(out_dir: pathlib.Path, ligand_copies: int = 10) -> None:
       3. Solvate and add ions
       4. Generate final AMBER files
     """
-    # Locate NP files (assume they're in ../NP or ../../NP relative to stageA_builder)
-    script_dir = pathlib.Path(__file__).parent
-    np_dir = None
-    for candidate in [
-        script_dir.parent / "NP",
-        script_dir.parent.parent / "NP",
-        script_dir.parent / "PET_NP",
-    ]:
-        if candidate.exists() and (candidate / "NP_correct.lib").exists():
-            np_dir = candidate
-            break
-    
-    if not np_dir:
-        print("⚠️  NP directory not found, building ligand-only system")
-        _build_ligand_only_system(out_dir)
-        return
-    
-    print(f"   Using NP from: {np_dir}")
-    
-    # Relative paths from output directory to NP
-    np_rel = os.path.relpath(np_dir, out_dir)
+    print(f"   Using NP files from: {np_files['lib'].parent}")
     
     # Check if NP_correct.lib has a top-level NP unit
     try:
-        lib_txt = (np_dir / "NP_correct.lib").read_text(errors="ignore")
+        lib_txt = np_files['lib'].read_text(errors="ignore")
         np_has_unit = ("!entry.NP.unit" in lib_txt) or ("!entry.NP.unit.atoms" in lib_txt)
     except Exception:
         np_has_unit = False
@@ -430,15 +502,15 @@ def _build_np_complex(out_dir: pathlib.Path, ligand_copies: int = 10) -> None:
     tleap_np_clean = out_dir / "tleap_np_clean.in"
     if np_has_unit:
         tleap_np_clean.write_text(
-            f"loadoff {np_rel}/NP_correct.lib\n"
+            f"loadoff {np_files['lib']}\n"
             f"NPu = copy NP\n"
             f"savepdb NPu NP_clean.pdb\n"
             f"quit\n"
         )
     else:
         tleap_np_clean.write_text(
-            f"loadoff {np_rel}/NP_correct.lib\n"
-            f"NPu = loadpdb {np_rel}/NP_dry.pdb\n"
+            f"loadoff {np_files['lib']}\n"
+            f"NPu = loadpdb {np_files['dry_pdb']}\n"
             f"savepdb NPu NP_clean.pdb\n"
             f"quit\n"
         )
@@ -507,15 +579,15 @@ def _build_np_complex(out_dir: pathlib.Path, ligand_copies: int = 10) -> None:
     print("   - Building final solvated system with tleap...")
     tleap_final = out_dir / "tleap_final.in"
     if np_has_unit:
-        np_block = f"loadoff {np_rel}/NP_correct.lib\nNPu = copy NP\n"
+        np_block = f"loadoff {np_files['lib']}\nNPu = copy NP\n"
     else:
-        np_block = f"loadoff {np_rel}/NP_correct.lib\nNPu = loadpdb {np_rel}/NP_dry.pdb\n"
+        np_block = f"loadoff {np_files['lib']}\nNPu = loadpdb {np_files['dry_pdb']}\n"
     
     tleap_final.write_text(
         f"source leaprc.gaff2\n"
         f"source leaprc.water.tip3p\n"
-        f"loadamberparams {np_rel}/NP_charged.frcmod\n"
-        f"loadamberparams {np_rel}/NP_neut.frcmod\n"
+        f"loadamberparams {np_files['charged_frcmod']}\n"
+        f"loadamberparams {np_files['neut_frcmod']}\n"
         f"{np_block}"
         f"loadamberparams LIG.frcmod\n"
         f"loadoff LIG.lib\n"
@@ -650,6 +722,7 @@ def process_csv_batch(
     output_root: pathlib.Path,
     templates_dir: pathlib.Path,
     git_commit: str,
+    np_files: dict[str, pathlib.Path] | None,
     dry_run: bool = False,
 ) -> dict[str, Any]:
     """
@@ -716,6 +789,7 @@ def process_csv_batch(
             outputs = run_builder(
                 smiles_norm=smiles_norm,
                 out_dir=mol_output_dir,
+                np_files=np_files,
                 templates_dir=templates_dir,
                 dry_run=dry_run,
             )
@@ -826,6 +900,12 @@ def main(argv: list[str]) -> int:
         else (this_file.parent / "templates").resolve()
     )
 
+    default_np_files = resolve_default_np_files(stageA_root)
+    if default_np_files:
+        print(f"📦 Using bundled NP assets from {default_np_files['lib'].parent}")
+    else:
+        print("ℹ️  No bundled NP assets detected; will build ligand-only systems")
+
     repo_root = find_repo_root(stageA_root)
     git_commit = get_git_commit(repo_root)
 
@@ -848,6 +928,7 @@ def main(argv: list[str]) -> int:
                 output_root=output_root,
                 templates_dir=templates_dir,
                 git_commit=git_commit,
+                np_files=default_np_files,
                 dry_run=args.dry_run,
             )
             
@@ -880,6 +961,7 @@ def main(argv: list[str]) -> int:
             outputs = run_builder(
                 smiles_norm=smiles_norm,
                 out_dir=out_dir,
+                np_files=default_np_files,
                 templates_dir=templates_dir,
                 dry_run=args.dry_run,
             )

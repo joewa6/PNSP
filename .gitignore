@@ -6,6 +6,13 @@ Orchestra/stageD_reduce/cache/
 Orchestra/stageD_reduce/outputs/
 
 # ============================
+# RUN OUTPUTS (except smoke tests)
+# ============================
+Runs/*
+!Runs/__SMOKE__/
+!Runs/README.md
+
+# ============================
 # STAGE WORK DIRECTORIES
 # ============================
 Orchestra/stageA_builder/**/builds/

@@ -1,6 +1,0 @@
-parm NP_solv.prmtop
-trajin NP_solv.inpcrd
-strip :WAT,HOH,Na+,Cl-,K+,MG,Ca2+
-trajout NP_dry.pdb pdb
-run
-quit

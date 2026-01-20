@@ -1,0 +1,21 @@
+# Nanoparticle Profile: Charge -50
+# PET nanoplastic standard configuration
+
+profile_id: "NP_c50"
+description: "PET nanoplastic with -50e charge state"
+charge: -50
+
+# Force field files (relative to this profile or absolute)
+library: "NP_c50/NP_correct.lib"
+frcmod_charged: "NP_c50/NP_charged.frcmod"
+frcmod_neutral: "NP_c50/NP_neut.frcmod"
+
+# Optional reference structure
+reference_pdb: "NP_c50/NP_dry.pdb"
+
+# Metadata
+created: "2026-01-14"
+validated: true
+notes: |
+  Standard PET nanoplastic configuration.
+  Use for physiological pH conditions (6.0-8.0).

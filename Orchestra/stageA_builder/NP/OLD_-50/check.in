@@ -1,9 +1,0 @@
-source leaprc.gaff2
-loadoff NP_correct.lib
-loadamberparams NP_charged.frcmod
-loadamberparams NP_neut.frcmod
-NPu = NP # instantiate the NP unit from the lib
-check NPu
-charge NPu
-savepdb NPu NP_dry.pdb
-quit
