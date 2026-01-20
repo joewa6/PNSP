@@ -1,0 +1,15 @@
+{
+  "project": "PET_SCREENING",
+  "ligand_norm": "lig_56de9fefcf16",
+  "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "stageA": {
+    "status": "complete",
+    "builder_version": "0.1.0",
+    "git_commit": "cc8b307365e9385078e73bd8347b44e5a5e221dd",
+    "timestamp": "2026-01-20T10:15:55+00:00"
+  },
+  "paths": {
+    "topology": "system.prmtop",
+    "coords": "system.inpcrd"
+  }
+}

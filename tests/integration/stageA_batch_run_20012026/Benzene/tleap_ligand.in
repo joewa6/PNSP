@@ -1,0 +1,6 @@
+source leaprc.gaff2
+loadamberparams LIG.frcmod
+LIG = loadmol2 LIG.mol2
+saveoff LIG LIG.lib
+savepdb LIG LIG.pdb
+quit

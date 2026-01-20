@@ -1,0 +1,4 @@
+loadoff /home/jwallace-iit.local/WORK/MSE_LAB/Orchestra/stageA_builder/NP/NP_correct.lib
+NPu = copy NP
+savepdb NPu NP_clean.pdb
+quit

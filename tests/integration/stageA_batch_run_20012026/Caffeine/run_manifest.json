@@ -1,0 +1,15 @@
+{
+  "project": "PET_SCREENING",
+  "ligand_norm": "lig_693364cb16a9",
+  "smiles": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+  "stageA": {
+    "status": "complete",
+    "builder_version": "0.1.0",
+    "git_commit": "cc8b307365e9385078e73bd8347b44e5a5e221dd",
+    "timestamp": "2026-01-20T10:16:10+00:00"
+  },
+  "paths": {
+    "topology": "system.prmtop",
+    "coords": "system.inpcrd"
+  }
+}
