@@ -455,15 +455,15 @@ def run_builder(
         print(f"✅ Full Epik + NP pipeline complete: {top.name}, {crd.name}")
         
     except ImportError as e:
-        print(f"⚠️  Epik builder not available: {e}")
-        print(f"   Falling back to simple ligand-only system")
-        _build_simple_ligand_system(smiles_norm, out_dir)
+        raise RuntimeError(
+            f"Current profile does not contain rdkit,epik. "
+            f"Install required dependencies to use Epik pipeline. Error: {e}"
+        ) from e
     except Exception as e:
         print(f"⚠️  Epik pipeline failed: {e}")
         import traceback
         traceback.print_exc()
-        print(f"   Falling back to simple ligand-only system")
-        _build_simple_ligand_system(smiles_norm, out_dir)
+        raise
 
     return BuildOutputs(topology=top, coords=crd)
 
