@@ -1,0 +1,16 @@
+name: pnsp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ambertools>=24
+  - openbabel
+  - rdkit>=2024.03
+  - mdanalysis>=2.7
+  - numpy>=1.26
+  - pandas>=2.1
+  - scipy>=1.11
+  - matplotlib>=3.8
+  - pillow
+  - scikit-learn>=1.4
+  - pygam>=0.9

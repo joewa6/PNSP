@@ -1,0 +1,204 @@
+system,rank,name,occupancy_mean,MW,LogP,TPSA,HBD,HBA,RotatableBonds,NumAromaticRings,HeavyAtomCount,NumHalogens,NetCharge,smiles,charge_class,chemical_class
+Bis_2-ethylhexyl_hexanedioate,1,Bis_2-ethylhexyl_hexanedioate,0.9937777777777778,370.5739999999993,6.066000000000007,52.60000000000001,0.0,4.0,21.0,0.0,26.0,0.0,0.0,CCCCC(CC)COC(=O)CCCCC(=O)OCC(CC)CCCC,neutral,
+Norflurazon,2,Norflurazon,0.9923333333333334,303.6709999999998,2.946400000000001,46.92,1.0,4.0,3.0,2.0,20.0,4.0,0.0,CNC1=C(Cl)C(=O)N(N=C1)C1=CC=CC(=C1)C(F)(F)F,neutral,
+Indeno_1_2_3-cd_pyrene,3,Indeno_1_2_3-cd_pyrene,0.9857111111111112,276.33799999999974,6.2314000000000025,0.0,0.0,0.0,0.0,5.0,22.0,0.0,0.0,c1ccc2c(c1)c1ccc3ccc4cccc5cc2c1c3c45,neutral,PAHs
+Chlorothalonil,4,Chlorothalonil,0.979022222222222,265.914,4.04356,47.58,0.0,2.0,0.0,1.0,14.0,4.0,0.0,Clc1c(Cl)c(C#N)c(Cl)c(C#N)c1Cl,neutral,
+Benzo_a_pyrene,5,Benzo_a_pyrene,0.9762222222222224,252.3160000000001,5.737200000000003,0.0,0.0,0.0,0.0,5.0,20.0,0.0,0.0,c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34,neutral,PAHs
+Kepone,6,Kepone,0.9745777777777778,490.6390000000002,4.6182,17.07,0.0,1.0,0.0,0.0,21.0,10.0,0.0,ClC12C(=O)C3(Cl)C4(Cl)C1(Cl)C1(Cl)C2(Cl)C3(Cl)C4(Cl)C1(Cl)Cl,neutral,Organochlorine pesticides
+O-Desmethylvenlafaxine,7,O-Desmethylvenlafaxine,0.9726,264.38899999999995,2.620800000000001,47.86,2.0,2.0,8.0,0.0,19.0,0.0,1.0,CN(C)CC(C1=CC=C(O)C=C1)C1(O)CCCCC1,cation,
+2_4_6-Trinitrotoluene,8,2_4_6-Trinitrotoluene,0.9725333333333332,227.13200000000003,1.71962,129.42000000000002,0.0,6.0,4.0,1.0,16.0,0.0,0.0,Cc1c(cc(cc1[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O,neutral,
+Benzo_k_fluoranthene,9,Benzo_k_fluoranthene,0.9722444444444444,252.3160000000001,5.640400000000003,0.0,0.0,0.0,0.0,4.0,20.0,0.0,0.0,c1ccc2cc-3c(cc2c1)-c1cccc2cccc-3c12,neutral,PAHs
+Propargite,10,Propargite,0.9689333333333334,350.4799999999996,3.919200000000002,44.760000000000005,0.0,4.0,6.0,1.0,24.0,0.0,0.0,CC(C)(C)C1=CC=C(OC2CCCCC2OS(=O)OCC#C)C=C1,neutral,
+Methoxychlor,11,Methoxychlor,0.9665555555555556,345.65299999999985,5.205900000000003,18.46,0.0,2.0,6.0,2.0,21.0,3.0,0.0,COc1ccc(cc1)C(c1ccc(OC)cc1)C(Cl)(Cl)Cl,neutral,Organochlorine pesticides
+Ammonia,12,Ammonia,0.9595555555555556,18.039,0.3762,36.5,0.0,0.0,0.0,0.0,1.0,0.0,1.0,N,cation,
+Phenanthrene,13,Phenanthrene,0.959177777777778,178.2340000000001,3.993000000000002,0.0,0.0,0.0,0.0,3.0,14.0,0.0,0.0,c1ccc2c(c1)ccc1ccccc21,neutral,PAHs
+Dieldrin,14,Dieldrin,0.9574222222222222,380.9129999999999,4.481400000000002,12.53,0.0,1.0,0.0,0.0,19.0,6.0,0.0,[H][C@]12O[C@@]1([H])[C@@]1([H])C[C@]2([H])[C@@]2([H])[C@]1([H])[C@@]1(Cl)C(Cl)=C(Cl)[C@]2(Cl)C1(Cl)Cl,neutral,Organochlorine pesticides
+Aldrin,15,Aldrin,0.9571777777777776,364.9139999999999,5.270200000000002,0.0,0.0,0.0,0.0,0.0,18.0,6.0,0.0,ClC1=C(Cl)[C@]2(Cl)[C@@H]3[C@@H]4C[C@@H](C=C4)[C@@H]3[C@@]1(Cl)C2(Cl)Cl,neutral,Organochlorine pesticides
+17alpha-Ethinylestradiol,16,17alpha-Ethinylestradiol,0.9523999999999998,296.4099999999995,3.612600000000002,40.46,2.0,2.0,3.0,1.0,22.0,0.0,0.0,[H][C@@]12CC[C@@](O)(C#C)[C@@]1(C)CC[C@]1([H])C3=C(CC[C@@]21[H])C=C(O)C=C3,neutral,
+Fipronil,17,Fipronil,0.9516,437.152,4.27918,84.7,1.0,5.0,3.0,2.0,26.0,8.0,0.0,NC1=C(C(=NN1C1=C(Cl)C=C(C=C1Cl)C(F)(F)F)C#N)S(=O)C(F)(F)F,neutral,
+Anatoxin_a,18,Anatoxin_a,0.9483555555555556,166.24400000000014,1.321,34.17,0.0,1.0,2.0,0.0,12.0,0.0,1.0,[H][C@@]12CC[C@@]([H])(N1)C(=CCC2)C(C)=O,cation,
+Chlordane,19,Chlordane,0.9472666666666668,409.782,5.682800000000001,0.0,0.0,0.0,0.0,0.0,18.0,8.0,0.0,ClC1CC2C(C1Cl)C1(Cl)C(Cl)=C(Cl)C2(Cl)C1(Cl)Cl,neutral,Organochlorine pesticides
+Flufenacet,20,Flufenacet,0.9464888888888888,363.33599999999984,3.516400000000002,55.32000000000001,0.0,5.0,7.0,2.0,24.0,4.0,0.0,CC(C)N(C(=O)COC1=NN=C(S1)C(F)(F)F)C1=CC=C(F)C=C1,neutral,
+Trifluralin,21,Trifluralin,0.9461111111111112,335.28199999999964,4.148200000000003,89.52000000000001,0.0,5.0,9.0,1.0,23.0,3.0,0.0,CCCN(CCC)c1c(cc(cc1[N+]([O-])=O)C(F)(F)F)[N+]([O-])=O,neutral,
+Benzo_g_h_i_perylene,22,Benzo_g_h_i_perylene,0.945911111111111,276.33799999999974,6.3282000000000025,0.0,0.0,0.0,0.0,6.0,22.0,0.0,0.0,c1cc2ccc3ccc4ccc5cccc6c(c1)c2c3c4c56,neutral,PAHs
+Cyclotetramethylenetetranitramine,23,Cyclotetramethylenetetranitramine,0.9407777777777776,296.1559999999999,-2.195199999999997,185.52,0.0,8.0,4.0,0.0,20.0,0.0,0.0,[O-][N+](=O)N1CN(CN(CN(C1)[N+]([O-])=O)[N+]([O-])=O)[N+]([O-])=O,neutral,
+Ametryn,24,Ametryn,0.9378,227.33700000000016,1.8456,62.73,2.0,6.0,9.0,1.0,15.0,0.0,0.0,S(c1nc(nc(n1)NC(C)C)NCC)C,neutral,Triazine herbicides
+N-Nitrosodiphenylamine,25,N-Nitrosodiphenylamine,0.9374444444444444,198.22500000000005,3.5061000000000018,32.67,0.0,2.0,3.0,2.0,15.0,0.0,0.0,O=NN(C1=CC=CC=C1)C1=CC=CC=C1,neutral,
+Methyl_parathion,26,Methyl_parathion,0.9368666666666668,263.21099999999984,2.490900000000001,70.83000000000001,0.0,6.0,7.0,1.0,16.0,0.0,0.0,COP(=S)(OC)Oc1ccc(cc1)N(=O)=O,neutral,Organophosphates
+Carboxin,27,Carboxin,0.9324666666666668,235.3080000000001,2.620000000000001,38.33,1.0,3.0,3.0,1.0,16.0,0.0,0.0,CC1=C(SCCO1)C(=O)Nc1ccccc1,neutral,
+Lindane,28,Lindane,0.9316888888888888,290.8319999999999,3.644400000000001,0.0,0.0,0.0,0.0,0.0,12.0,6.0,0.0,Cl[C@H]1[C@H](Cl)[C@@H](Cl)[C@@H](Cl)[C@H](Cl)[C@H]1Cl,neutral,Organochlorine pesticides
+Oxyfluorfen,29,Oxyfluorfen,0.9309777777777778,361.7029999999998,5.458000000000003,61.60000000000001,0.0,4.0,6.0,2.0,24.0,4.0,0.0,CCOC1=CC(OC2=CC=C(C=C2Cl)C(F)(F)F)=CC=C1[N+]([O-])=O,neutral,
+2_4-Dinitrotoluene,30,2_4-Dinitrotoluene,0.9280888888888889,182.13500000000005,1.81142,86.28,0.0,4.0,3.0,1.0,13.0,0.0,0.0,Cc1ccc(cc1N(=O)=O)N(=O)=O,neutral,
+Endrin,31,Endrin,0.9280666666666666,380.9129999999999,4.481400000000002,12.53,0.0,1.0,0.0,0.0,19.0,6.0,0.0,ClC1=C(Cl)[C@]2(Cl)[C@@H]3[C@H]4C[C@H]([C@@H]5O[C@H]45)[C@@H]3[C@@]1(Cl)C2(Cl)Cl,neutral,Organochlorine pesticides
+1_4-Dichlorobenzene,32,1_4-Dichlorobenzene,0.9278,147.00400000000002,2.9934000000000003,0.0,0.0,0.0,0.0,1.0,8.0,2.0,0.0,C1=CC(=CC=C1Cl)Cl,neutral,
+Chlorpyrifos,33,Chlorpyrifos,0.9276,350.59099999999984,4.7181000000000015,40.58,0.0,5.0,8.0,1.0,18.0,3.0,0.0,CCOP(=S)(OCC)OC1=NC(Cl)=C(Cl)C=C1Cl,neutral,Organophosphates
+Heptachlor_epoxide_B,34,Heptachlor_epoxide_B,0.9267555555555556,389.32,4.452700000000001,12.53,0.0,1.0,0.0,0.0,18.0,7.0,0.0,ClC1C2OC2C2C1C1(Cl)C(Cl)=C(Cl)C2(Cl)C1(Cl)Cl,neutral,Organochlorine pesticides
+Tri-allate,35,Tri-allate,0.9252222222222224,304.6699999999997,4.843900000000003,20.31,0.0,2.0,8.0,0.0,16.0,3.0,0.0,CC(C)N(C(C)C)C(=O)SCC(Cl)=C(Cl)Cl,neutral,
+Fluorene,36,Fluorene,0.9243777777777776,166.22300000000007,3.2578000000000014,0.0,0.0,0.0,0.0,2.0,13.0,0.0,0.0,c(c(c(c1ccc2)c2)ccc3)(c3)C1,neutral,PAHs
+Benzyl_butyl_phthalate,37,Benzyl_butyl_phthalate,0.9232666666666666,312.36499999999967,4.000500000000003,52.60000000000001,0.0,4.0,8.0,2.0,23.0,0.0,0.0,CCCCOC(=O)c1ccccc1C(=O)OCc1ccccc1,neutral,Phthalates
+2_4-Dichlorophenol,38,2_4-Dichlorophenol,0.9136222222222222,163.00300000000004,2.699,20.23,1.0,1.0,1.0,1.0,9.0,2.0,0.0,Oc1ccc(Cl)cc1Cl,neutral,
+Dimethrin,39,Dimethrin,0.9109777777777778,286.41499999999945,4.585040000000005,26.3,0.0,2.0,10.0,1.0,21.0,0.0,0.0,CC(C)=CC1C(C(=O)OCC2=C(C)C=C(C)C=C2)C1(C)C,neutral,
+Diethyl_phthalate,40,Diethyl_phthalate,0.9085777777777776,222.2400000000001,2.04,52.60000000000001,0.0,4.0,6.0,1.0,16.0,0.0,0.0,CCOC(=O)c1ccccc1C(=O)OCC,neutral,Phthalates
+Benz_a_anthracene,41,Benz_a_anthracene,0.9081777777777778,228.29400000000007,5.146200000000003,0.0,0.0,0.0,0.0,4.0,18.0,0.0,0.0,C1=CC=C2C(=C1)C=CC3=CC4=CC=CC=C4C=C32,neutral,PAHs
+Bromodiiodomethane,42,Bromodiiodomethane,0.9079777777777778,346.73099999999994,2.5349000000000004,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,BrC(I)I,neutral,
+Simazine,43,Simazine,0.9070444444444444,201.6610000000001,1.3885999999999996,62.73,2.0,5.0,6.0,1.0,13.0,1.0,0.0,c1(nc(nc(n1)Cl)NCC)NCC,neutral,Triazine herbicides
+Tribufos,44,Tribufos,0.9052444444444444,314.52199999999954,6.694400000000005,17.07,0.0,4.0,15.0,0.0,17.0,0.0,0.0,CCCCSP(=O)(SCCCC)SCCCC,neutral,Organophosphates
+Dibutyl_1_2-benzenedicarboxylate,45,Dibutyl_1_2-benzenedicarboxylate,0.9045555555555556,278.3479999999996,3.6004000000000023,52.60000000000001,0.0,4.0,10.0,1.0,20.0,0.0,0.0,CCCCOC(=O)c1ccccc1C(=O)OCCCC,neutral,Phthalates
+Bisphenol_A,46,Bisphenol_A,0.8978444444444444,228.2910000000001,3.423700000000002,40.46,2.0,2.0,6.0,2.0,17.0,0.0,0.0,CC(C)(C1=CC=C(O)C=C1)C1=CC=C(O)C=C1,neutral,
+Tebuthiuron,47,Tebuthiuron,0.8974666666666667,228.3210000000001,1.6111999999999995,58.120000000000005,1.0,4.0,3.0,1.0,15.0,0.0,0.0,CNC(=O)N(C)C1=NN=C(S1)C(C)(C)C,neutral,
+Acenaphthene,48,Acenaphthene,0.8953999999999999,154.21200000000007,2.938400000000001,0.0,0.0,0.0,0.0,2.0,12.0,0.0,0.0,C1Cc2cccc3cccc1c23,neutral,PAHs
+Alachlor,49,Alachlor,0.8937777777777778,269.77199999999976,2.9871000000000016,29.540000000000003,0.0,2.0,9.0,1.0,18.0,1.0,0.0,CCC1=CC=CC(CC)=C1N(COC)C(=O)CCl,neutral,
+Carbaryl,50,Carbaryl,0.8937333333333334,201.22500000000008,2.5580000000000007,38.33,1.0,2.0,2.0,2.0,15.0,0.0,0.0,CNC(=O)OC1=C2C=CC=CC2=CC=C1,neutral,
+1_3_5-Trichlorobenzene,51,1_3_5-Trichlorobenzene,0.8930888888888889,181.44900000000004,3.6468000000000007,0.0,0.0,0.0,0.0,1.0,9.0,3.0,0.0,Clc1cc(Cl)cc(Cl)c1,neutral,
+2_4-Bis_isopropylamino_-6-chloro-1_3_5-triazine,52,2_4-Bis_isopropylamino_-6-chloro-1_3_5-triazine,0.8926888888888889,229.7150000000001,2.1655999999999995,62.73,2.0,5.0,8.0,1.0,15.0,1.0,0.0,CC(C)NC1=NC(NC(C)C)=NC(Cl)=N1,neutral,
+Pyrene,53,Pyrene,0.8909555555555556,202.25600000000009,4.584000000000002,0.0,0.0,0.0,0.0,4.0,16.0,0.0,0.0,c(c(c(cc1)ccc2)c2cc3)(c1ccc4)c34,neutral,PAHs
+Fenamiphos,54,Fenamiphos,0.8904888888888889,303.3639999999996,4.238320000000003,47.56,1.0,4.0,12.0,1.0,19.0,0.0,0.0,CCOP(=O)(NC(C)C)OC1=CC(=C(C=C1)SC)C,neutral,Organophosphates
+Hexachlorobenzene,55,Hexachlorobenzene,0.8891555555555555,284.784,5.606999999999999,0.0,0.0,0.0,0.0,1.0,12.0,6.0,0.0,c(c(c(c(c1Cl)Cl)Cl)Cl)(c1Cl)Cl,neutral,Organochlorine pesticides
+N-Nitrosodibutylamine,56,N-Nitrosodibutylamine,0.8869555555555556,158.24500000000015,2.570000000000001,32.67,0.0,2.0,9.0,0.0,11.0,0.0,0.0,CCCCN(CCCC)N=O,neutral,
+Atrazine,57,Atrazine,0.8868666666666665,215.68800000000013,1.7770999999999997,62.73,2.0,5.0,7.0,1.0,14.0,1.0,0.0,c1(nc(nc(n1)Cl)NCC)NC(C)C,neutral,Triazine herbicides
+Carbendazim,58,Carbendazim,0.8833777777777778,191.19000000000008,1.1630999999999996,70.24000000000001,2.0,2.0,1.0,2.0,14.0,0.0,0.0,COC(=O)NC1=NC2=CC=CC=C2N1,neutral,
+Tebuconazole,59,Tebuconazole,0.8803333333333333,307.8249999999996,3.3415000000000017,50.94,1.0,4.0,6.0,2.0,21.0,1.0,0.0,CC(C)(C)C(O)(CCC1=CC=C(Cl)C=C1)CN1C=NC=N1,neutral,
+Diuron,60,Diuron,0.8776666666666666,233.0980000000001,3.0869000000000018,32.34,1.0,1.0,3.0,1.0,14.0,2.0,0.0,CN(C)C(=O)NC1=CC(Cl)=C(Cl)C=C1,neutral,
+Dibromochloronitromethane,61,Dibromochloronitromethane,0.8769777777777777,253.277,1.903,43.14,0.0,2.0,1.0,0.0,7.0,3.0,0.0,[O-][N+](=O)C(Cl)(Br)Br,neutral,
+2_6-Dinitrotoluene,62,2_6-Dinitrotoluene,0.876777777777778,182.135,1.81142,86.28,0.0,4.0,3.0,1.0,13.0,0.0,0.0,Cc1c(cccc1N(=O)=O)N(=O)=O,neutral,
+alpha-1_2_3_4_5_6-Hexachlorocyclohexane,63,alpha-1_2_3_4_5_6-Hexachlorocyclohexane,0.8759333333333333,290.8319999999999,3.644400000000001,0.0,0.0,0.0,0.0,0.0,12.0,6.0,0.0,Cl[C@H]1[C@H](Cl)[C@@H](Cl)[C@H](Cl)[C@H](Cl)[C@H]1Cl,neutral,Organochlorine pesticides
+Anthracene,64,Anthracene,0.8711777777777778,178.2340000000001,3.993000000000002,0.0,0.0,0.0,0.0,3.0,14.0,0.0,0.0,c(c(ccc1)cc(c2ccc3)c3)(c1)c2,neutral,PAHs
+Chrysene,65,Chrysene,0.8688888888888889,228.29400000000007,5.146200000000003,0.0,0.0,0.0,0.0,4.0,18.0,0.0,0.0,C1=CC=C2C(=C1)C=CC3=C2C=CC4=CC=CC=C43,neutral,PAHs
+Iodoform,66,Iodoform,0.8632000000000001,393.731,2.575,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,IC(I)I,neutral,
+1_3-Dichlorobenzene,67,1_3-Dichlorobenzene,0.8616666666666667,147.00400000000005,2.993400000000001,0.0,0.0,0.0,0.0,1.0,8.0,2.0,0.0,Clc1cccc(Cl)c1,neutral,
+Diphenamid,68,Diphenamid,0.8608000000000001,239.31800000000013,2.9067000000000016,20.31,0.0,1.0,5.0,2.0,18.0,0.0,0.0,CN(C)C(=O)C(C1=CC=CC=C1)C1=CC=CC=C1,neutral,
+Disulfoton,69,Disulfoton,0.8587111111111111,274.41299999999967,3.770200000000002,18.46,0.0,5.0,12.0,0.0,14.0,0.0,0.0,CCOP(=S)(OCC)SCCSCC,neutral,
+Aldicarb,70,Aldicarb,0.8505999999999999,190.2680000000001,1.4698,50.69,1.0,4.0,7.0,0.0,12.0,0.0,0.0,CC(C)(/C=N/OC(=O)NC)SC,neutral,
+1_2_4-Trichlorobenzene,71,1_2_4-Trichlorobenzene,0.8465777777777777,181.44900000000004,3.6468000000000007,0.0,0.0,0.0,0.0,1.0,9.0,3.0,0.0,Clc1ccc(Cl)c(Cl)c1,neutral,
+Bensulide,72,Bensulide,0.8449333333333332,397.5239999999998,3.7726000000000015,64.63000000000001,1.0,6.0,14.0,1.0,23.0,0.0,0.0,CC(C)OP(=S)(OC(C)C)SCCNS(=O)(=O)C1=CC=CC=C1,neutral,Organophosphates
+Fluconazole,73,Fluconazole,0.8445333333333332,306.2759999999998,0.7357999999999996,81.64999999999999,1.0,7.0,6.0,3.0,22.0,2.0,0.0,OC(CN1C=NC=N1)(CN1C=NC=N1)C1=C(F)C=C(F)C=C1,neutral,
+Dibromoiodomethane,74,Dibromoiodomethane,0.8437999999999999,299.73099999999994,2.4948,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,BrC(Br)I,neutral,
+Prometon,75,Prometon,0.8396,225.29600000000016,1.5208,71.96000000000001,2.0,6.0,10.0,1.0,16.0,0.0,0.0,CC(C)NC1=NC(=NC(=N1)OC)NC(C)C,neutral,Triazine herbicides
+Butylate,76,Butylate,0.8390888888888889,217.37800000000016,3.4735000000000023,20.31,0.0,2.0,10.0,0.0,14.0,0.0,0.0,CCSC(=O)N(CC(C)C)CC(C)C,neutral,
+1_2_3-Trichloropropane,77,1_2_3-Trichloropropane,0.8354222222222223,147.43200000000004,2.0714,0.0,0.0,0.0,2.0,0.0,6.0,3.0,0.0,ClCC(Cl)CCl,neutral,
+2-Chlorophenol,78,2-Chlorophenol,0.8335777777777778,128.55799999999996,2.0456000000000003,20.23,1.0,1.0,1.0,1.0,8.0,1.0,0.0,Oc1ccccc1Cl,neutral,
+Hexachloroethane,79,Hexachloroethane,0.8330444444444446,236.74,3.7268,0.0,0.0,0.0,0.0,0.0,8.0,6.0,0.0,ClC(Cl)(Cl)C(Cl)(Cl)Cl,neutral,
+Cyanazine,80,Cyanazine,0.8323555555555555,240.6980000000001,1.6708799999999997,86.52,2.0,6.0,7.0,1.0,16.0,1.0,0.0,CCNC1=NC(=NC(=N1)Cl)NC(C)(C)C#N,neutral,Triazine herbicides
+Deisopropylatrazine,81,Deisopropylatrazine,0.8318,173.60700000000008,0.5389999999999998,76.72,2.0,5.0,4.0,1.0,11.0,1.0,0.0,CCNC1=NC(N)=NC(Cl)=N1,neutral,Triazine herbicides
+2-Hydroxyatrazine,82,2-Hydroxyatrazine,0.8301333333333333,197.24200000000013,0.4169999999999998,82.7,3.0,5.0,7.0,1.0,14.0,0.0,0.0,CCNC1=NC(O)=NC(NC(C)C)=N1,neutral,Triazine herbicides
+2-Chlorotoluene,83,2-Chlorotoluene,0.8290444444444441,126.58599999999996,2.6484200000000007,0.0,0.0,0.0,1.0,1.0,8.0,1.0,0.0,Cc1ccccc1Cl,neutral,
+Tebupirimfos,84,Tebupirimfos,0.8281555555555556,318.3789999999996,3.8389000000000033,53.47000000000001,0.0,6.0,9.0,1.0,20.0,0.0,0.0,CCOP(=S)(OC(C)C)OC1=CN=C(N=C1)C(C)(C)C,neutral,Organophosphates
+Diazinon,85,Diazinon,0.8276,304.35199999999963,3.5847200000000026,53.47,0.0,6.0,12.0,1.0,19.0,0.0,0.0,CCOP(=S)(OCC)OC1=NC(=NC(C)=C1)C(C)C,neutral,Organophosphates
+Fonofos,86,Fonofos,0.8256222222222223,246.3370000000001,4.144600000000003,9.23,0.0,3.0,7.0,1.0,14.0,0.0,0.0,CCOP(=S)(CC)Sc1ccccc1,neutral,Organophosphates
+Dimethyl_phthalate,87,Dimethyl_phthalate,0.8250666666666667,194.1860000000001,1.2597999999999998,52.60000000000001,0.0,4.0,4.0,1.0,14.0,0.0,0.0,COC(=O)C1=CC=CC=C1C(=O)OC,neutral,Phthalates
+Hexachloro-1_3-butadiene,88,Hexachloro-1_3-butadiene,0.8239333333333334,260.762,4.7574,0.0,0.0,0.0,1.0,0.0,10.0,6.0,0.0,ClC(Cl)=C(Cl)C(Cl)=C(Cl)Cl,neutral,
+4-Chlorotoluene,89,4-Chlorotoluene,0.8231999999999997,126.58599999999996,2.6484200000000007,0.0,0.0,0.0,1.0,1.0,8.0,1.0,0.0,Cc1ccc(Cl)cc1,neutral,
+1_2_4-Trimethylbenzene,90,1_2_4-Trimethylbenzene,0.8206222222222219,120.19499999999992,2.611860000000001,0.0,0.0,0.0,3.0,1.0,9.0,0.0,0.0,CC1=CC(C)=C(C)C=C1,neutral,
+Bromoform,91,Bromoform,0.815911111111111,252.731,2.4547,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,BrC(Br)Br,neutral,Trihalomethanes
+1_3_5-Trimethylbenzene,92,1_3_5-Trimethylbenzene,0.8078222222222221,120.19499999999992,2.611860000000001,0.0,0.0,0.0,3.0,1.0,9.0,0.0,0.0,Cc1cc(C)cc(C)c1,neutral,
+Phorate,93,Phorate,0.8074666666666667,260.386,3.727700000000003,18.46,0.0,5.0,11.0,0.0,13.0,0.0,0.0,CCOP(=S)(OCC)SCSCC,neutral,Organophosphates
+Dibromoacetonitrile,94,Dibromoacetonitrile,0.8064444444444445,198.845,1.62588,23.79,0.0,1.0,0.0,0.0,5.0,2.0,0.0,BrC(Br)C#N,neutral,
+Tetrachloroethylene,95,Tetrachloroethylene,0.8063555555555556,165.834,3.0682,0.0,0.0,0.0,0.0,0.0,6.0,4.0,0.0,ClC(Cl)=C(Cl)Cl,neutral,
+Propoxur,96,Propoxur,0.8055555555555555,209.2450000000001,2.192,47.56,1.0,3.0,6.0,1.0,15.0,0.0,0.0,CNC(=O)OC1=CC=CC=C1OC(C)C,neutral,
+Chlorine_dioxide,97,Chlorine_dioxide,0.8028222222222222,69.467,-0.4245,40.46,2.0,2.0,2.0,0.0,3.0,1.0,1.0,[O][Cl]=O,cation,
+Hexahydro-1_3_5-trinitro-1_3_5-triazine,98,Hexahydro-1_3_5-trinitro-1_3_5-triazine,0.8000666666666666,222.11700000000005,-1.6463999999999988,139.14,0.0,6.0,3.0,0.0,15.0,0.0,0.0,[O-][N+](=O)N1CN(CN(C1)[N+]([O-])=O)[N+]([O-])=O,neutral,
+N-Nitrosodi-n-propylamine,99,N-Nitrosodi-n-propylamine,0.799711111111111,130.19099999999997,1.7898,32.67,0.0,2.0,7.0,0.0,9.0,0.0,0.0,CCCN(CCC)N=O,neutral,
+1_2-Dichlorobenzene,100,1_2-Dichlorobenzene,0.7995777777777777,147.00400000000005,2.993400000000001,0.0,0.0,0.0,0.0,1.0,8.0,2.0,0.0,Clc1ccccc1Cl,neutral,
+1_1_2-Trichloroethane,101,1_1_2-Trichloroethane,0.7973777777777776,133.40500000000003,2.0289,0.0,0.0,0.0,1.0,0.0,5.0,3.0,0.0,ClCC(Cl)Cl,neutral,
+Trinitroglycerin,102,Trinitroglycerin,0.7957999999999998,227.08500000000004,-1.0200999999999996,157.11,0.0,9.0,8.0,0.0,15.0,0.0,0.0,[O-][N+](=O)OCC(CO[N+]([O-])=O)O[N+]([O-])=O,neutral,
+Bromoxynil,103,Bromoxynil,0.7938,275.9069999999999,2.332380000000001,40.86,0.0,2.0,0.0,0.0,11.0,2.0,-1.0,OC1=C(Br)C=C(C=C1Br)C#N,anion,
+Anthraquinone,104,Anthraquinone,0.7935111111111112,208.21600000000004,2.4620000000000006,34.14,0.0,2.0,0.0,2.0,16.0,0.0,0.0,O=C1C2=C(C=CC=C2)C(=O)C2=C1C=CC=C2,neutral,PAHs
+Quinoline,105,Quinoline,0.7934666666666667,129.16199999999995,2.2348,12.89,0.0,1.0,0.0,2.0,10.0,0.0,0.0,C1=CC2=C(C=C1)N=CC=C2,neutral,
+Dicrotophos,106,Dicrotophos,0.7931777777777778,237.1920000000001,1.3959,65.07000000000001,0.0,5.0,10.0,0.0,15.0,0.0,0.0,COP(=O)(OC)O\C(C)=C\C(=O)N(C)C,neutral,Organophosphates
+Hexazinone,107,Hexazinone,0.7915777777777778,252.31800000000013,0.5131999999999997,60.13,0.0,6.0,5.0,1.0,18.0,0.0,0.0,n1(C2CCCCC2)c(n(c(N(C)C)nc1=O)C)=O,neutral,
+Styrene,108,Styrene,0.7866444444444445,104.15199999999994,2.3296,0.0,0.0,0.0,1.0,1.0,8.0,0.0,0.0,C=CC1=CC=CC=C1,neutral,
+Malathion,109,Malathion,0.7847999999999999,330.3639999999997,2.1218000000000004,71.06,0.0,8.0,13.0,0.0,19.0,0.0,0.0,CCOC(=O)CC(SP(=S)(OC)OC)C(=O)OCC,neutral,Organophosphates
+Ethoprop,110,Ethoprop,0.7837777777777778,242.34600000000017,4.417400000000003,26.3,0.0,4.0,11.0,0.0,13.0,0.0,0.0,CCCSP(=O)(OCC)SCCC,neutral,Organophosphates
+Trichloroethylene,111,Trichloroethylene,0.7800666666666667,131.389,2.5017000000000005,0.0,0.0,0.0,0.0,0.0,5.0,3.0,0.0,ClC=C(Cl)Cl,neutral,
+Cylindrospermopsin,112,Cylindrospermopsin,0.7789555555555555,415.42799999999977,-2.1590299999999942,169.73999999999998,4.0,9.0,6.0,0.0,28.0,0.0,0.0,[H][C@@]12CNC3=N[C@]([H])(C[C@@]([H])(C[C@H](OS(O)(=O)=O)[C@@H]1C)N23)[C@@H](O)C1=CC(=O)NC(=O)N1,neutral,
+Tributyl_phosphate,113,Tributyl_phosphate,0.7785333333333334,266.3179999999999,4.544600000000004,44.760000000000005,0.0,4.0,15.0,0.0,17.0,0.0,0.0,CCCCOP(=O)(OCCCC)OCCCC,neutral,
+bis_2-Chloro-1-methylethyl_ether,114,bis_2-Chloro-1-methylethyl_ether,0.7726444444444444,171.06700000000012,2.2576,9.23,0.0,1.0,6.0,0.0,9.0,2.0,0.0,CC(CCl)OC(C)CCl,neutral,
+Terbufos,115,Terbufos,0.7712444444444445,288.4399999999996,4.506300000000004,18.46,0.0,5.0,9.0,0.0,15.0,0.0,0.0,CCOP(=S)(OCC)SCSC(C)(C)C,neutral,Organophosphates
+Trichloronitromethane,116,Trichloronitromethane,0.7679777777777778,164.37500000000003,1.5908,43.14,0.0,2.0,0.0,0.0,7.0,3.0,0.0,[O-][N+](=O)C(Cl)(Cl)Cl,neutral,
+Chlorodiiodomethane,117,Chlorodiiodomethane,0.7660444444444443,302.28,2.3788,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(I)I,neutral,
+Bromochloroiodomethane,118,Bromochloroiodomethane,0.7659777777777776,255.28,2.3387,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(Br)I,neutral,
+Dichloroiodomethane,119,Dichloroiodomethane,0.7616666666666666,210.829,2.1826,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(Cl)I,neutral,
+Chlorobenzene,120,Chlorobenzene,0.7612666666666665,112.55899999999995,2.34,0.0,0.0,0.0,0.0,1.0,7.0,1.0,0.0,Clc1ccccc1,neutral,
+Bromobenzene,121,Bromobenzene,0.7537555555555555,157.01000000000005,2.4491000000000005,0.0,0.0,0.0,0.0,1.0,7.0,1.0,0.0,BrC1=CC=CC=C1,neutral,
+1_4-Dithiane,122,1_4-Dithiane,0.7534444444444445,120.24199999999996,1.4664,0.0,0.0,2.0,0.0,0.0,6.0,0.0,0.0,C1CSCCS1,neutral,
+Hexachlorocyclopentadiene,123,Hexachlorocyclopentadiene,0.7367111111111111,272.773,4.5523,0.0,0.0,0.0,0.0,0.0,11.0,6.0,0.0,ClC1=C(Cl)C(Cl)(Cl)C(Cl)=C1Cl,neutral,
+Bromodichloronitromethane,124,Bromodichloronitromethane,0.736,208.826,1.7469,43.14,0.0,2.0,1.0,0.0,7.0,3.0,0.0,[O-][N+](=O)C(Cl)(Cl)Br,neutral,
+1_1_2_2-Tetrachloroethane,125,1_1_2_2-Tetrachloroethane,0.7159777777777779,167.85000000000002,2.5938,0.0,0.0,0.0,1.0,0.0,6.0,4.0,0.0,ClC(Cl)C(Cl)Cl,neutral,
+Cumene,126,Cumene,0.7119333333333331,120.19499999999992,2.8100000000000005,0.0,0.0,0.0,3.0,1.0,9.0,0.0,0.0,CC(C)c1ccccc1,neutral,
+1_2-Dichloropropane,127,1_2-Dichloropropane,0.7056000000000002,112.98699999999998,1.8525,0.0,0.0,0.0,2.0,0.0,5.0,2.0,0.0,CC(Cl)CCl,neutral,
+Perfluorooctanesulfonic_acid,128,Perfluorooctanesulfonic_acid,0.6968888888888889,499.118,4.498500000000001,51.21,0.0,3.0,7.0,0.0,29.0,17.0,-1.0,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,anion,PFAS
+4_5-Dihydro-2-mercaptoimidazole,129,4_5-Dihydro-2-mercaptoimidazole,0.6904444444444445,102.16199999999996,-0.5359000000000003,24.06,2.0,1.0,0.0,0.0,6.0,0.0,0.0,S=C1NCCN1,neutral,
+1_2-Dibromo-3-chloropropane,130,1_2-Dibromo-3-chloropropane,0.6884444444444444,236.33400000000003,2.3836000000000004,0.0,0.0,0.0,2.0,0.0,6.0,3.0,0.0,ClCC(Br)CBr,neutral,
+1_3-Dichloropropene,131,1_3-Dichloropropene,0.6769111111111112,110.97099999999998,1.9777,0.0,0.0,0.0,1.0,0.0,5.0,2.0,0.0,ClCC=CCl,neutral,
+N-Nitrosopyrrolidine,132,N-Nitrosopyrrolidine,0.6749111111111112,100.12099999999997,0.7636,32.67,0.0,2.0,1.0,0.0,7.0,0.0,0.0,O=NN1CCCC1,neutral,
+Chlorate,133,Chlorate,0.6728666666666666,83.45,0.3330999999999999,51.21,0.0,3.0,0.0,0.0,4.0,1.0,-1.0,[O-][Cl](=O)=O,anion,
+Chlorodibromomethane,134,Chlorodibromomethane,0.6704888888888889,208.28,2.2986000000000004,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(Br)Br,neutral,Trihalomethanes
+2-_2_4_5-Trichlorophenoxy_propionic_acid,135,2-_2_4_5-Trichlorophenoxy_propionic_acid,0.6677777777777777,268.5029999999999,3.091800000000001,43.370000000000005,0.0,3.0,4.0,0.0,15.0,3.0,-1.0,CC(OC1=C(Cl)C=C(Cl)C(Cl)=C1)C(O)=O,anion,
+_Z_-1_2-Dichloroethylene,136,_Z_-1_2-Dichloroethylene,0.6573333333333333,96.944,1.9352,0.0,0.0,0.0,0.0,0.0,4.0,2.0,0.0,Cl\C=C/Cl,neutral,
+1_1_1-Trichloroethane,137,1_1_1-Trichloroethane,0.6458222222222222,133.40500000000003,2.376500000000001,0.0,0.0,0.0,0.0,0.0,5.0,3.0,0.0,CC(Cl)(Cl)Cl,neutral,
+Toluene,138,Toluene,0.6356222222222222,92.14099999999996,1.99502,0.0,0.0,0.0,1.0,1.0,7.0,0.0,0.0,Cc1ccccc1,neutral,
+Perfluorooctanoic_acid,139,Perfluorooctanoic_acid,0.6309555555555556,413.0559999999999,4.3514,34.14,0.0,2.0,6.0,0.0,25.0,15.0,-1.0,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,anion,PFAS
+Aldicarb_sulfoxide,140,Aldicarb_sulfoxide,0.6199111111111112,206.2670000000001,0.4852999999999998,67.75999999999999,1.0,4.0,7.0,0.0,13.0,0.0,0.0,CNC(=O)ON=CC(C)(C)S(C)=O,neutral,
+Ethylbenzene,141,Ethylbenzene,0.6194888888888889,106.16799999999994,2.249000000000001,0.0,0.0,0.0,2.0,1.0,8.0,0.0,0.0,CCc1ccccc1,neutral,
+1_2-Dichloroethane,142,1_2-Dichloroethane,0.6157555555555556,98.95999999999998,1.464,0.0,0.0,0.0,1.0,0.0,4.0,2.0,0.0,ClCCCl,neutral,
+Dinoseb,143,Dinoseb,0.6155555555555556,239.20700000000008,1.0103,100.25,0.0,5.0,5.0,0.0,17.0,0.0,-1.0,OC1=C([N+]([O-])=O)C=C([N+]([O-])=O)C=C1C(C)CC,anion,
+1_2-Dibromoethane,144,1_2-Dibromoethane,0.6134000000000001,187.862,1.7762,0.0,0.0,0.0,1.0,0.0,4.0,2.0,0.0,BrCCBr,neutral,
+_E_-1_2-Dichloroethylene,145,_E_-1_2-Dichloroethylene,0.6114222222222221,96.944,1.9352,0.0,0.0,0.0,0.0,0.0,4.0,2.0,0.0,Cl\C=C\Cl,neutral,
+Bromate,146,Bromate,0.6089999999999999,127.90099999999998,0.4891999999999999,51.21,0.0,3.0,0.0,0.0,4.0,1.0,-1.0,[O-][Br](=O)=O,anion,
+Pentachlorophenol,147,Pentachlorophenol,0.6056,265.33000000000004,3.8259,17.07,0.0,1.0,0.0,0.0,12.0,5.0,-1.0,Oc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,anion,
+1_1-Dichloroethylene,148,1_1-Dichloroethylene,0.6050444444444445,96.944,1.9352,0.0,0.0,0.0,0.0,0.0,4.0,2.0,0.0,ClC(Cl)=C,neutral,
+6-Chloro-1_3_5-triazine-2_4-diamine,149,6-Chloro-1_3_5-triazine-2_4-diamine,0.6016444444444445,145.55300000000005,-0.3106000000000001,90.71,2.0,5.0,2.0,1.0,9.0,1.0,0.0,NC1=NC(Cl)=NC(N)=N1,neutral,Triazine herbicides
+Bromodichloromethane,150,Bromodichloromethane,0.6004888888888888,163.829,2.1425,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(Cl)Br,neutral,Trihalomethanes
+Dimethoate,151,Dimethoate,0.5968222222222223,229.2630000000001,0.9829,47.56,1.0,5.0,8.0,0.0,12.0,0.0,0.0,CNC(=O)CSP(=S)(OC)OC,neutral,Organophosphates
+2_4_5-Trichlorophenoxyacetic_acid,152,2_4_5-Trichlorophenoxyacetic_acid,0.5880888888888889,254.47600000000003,2.7033000000000005,43.370000000000005,0.0,3.0,3.0,0.0,14.0,3.0,-1.0,OC(=O)COc1cc(Cl)c(Cl)cc1Cl,anion,
+Carbon_tetrachloride,153,Carbon_tetrachloride,0.5867777777777777,153.823,2.5529,0.0,0.0,0.0,0.0,0.0,5.0,4.0,0.0,ClC(Cl)(Cl)Cl,neutral,
+Bromochloromethane,154,Bromochloromethane,0.5752666666666666,129.384,1.5776,0.0,0.0,0.0,0.0,0.0,3.0,2.0,0.0,ClCBr,neutral,
+Aldicarb_sulfone,155,Aldicarb_sulfone,0.5652,222.26600000000013,0.1513999999999999,84.82999999999998,1.0,5.0,7.0,0.0,14.0,0.0,0.0,CNC(=O)ON=CC(C)(C)S(C)(=O)=O,neutral,
+2_4-Dichlorophenoxyacetic_acid,156,2_4-Dichlorophenoxyacetic_acid,0.5584888888888888,220.03100000000003,2.1368,43.370000000000005,0.0,3.0,3.0,0.0,13.0,2.0,-1.0,ClC1=C(OCC(O)=O)C=CC(Cl)=C1,anion,
+N-Nitrosodimethylamine,157,N-Nitrosodimethylamine,0.5547333333333333,74.08299999999997,0.2293999999999999,32.67,0.0,2.0,3.0,0.0,5.0,0.0,0.0,CN(C)N=O,neutral,
+2-_4-Chloro-2-methylphenoxy_acetic_acid,158,2-_4-Chloro-2-methylphenoxy_acetic_acid,0.5480666666666667,199.61300000000008,1.9604,43.370000000000005,0.0,3.0,4.0,0.0,13.0,1.0,-1.0,CC1=C(OCC(O)=O)C=CC(Cl)=C1,anion,
+Picloram,159,Picloram,0.5459555555555556,240.453,1.4877,72.52,1.0,4.0,2.0,0.0,13.0,3.0,-1.0,NC1=C(Cl)C(Cl)=NC(C(O)=O)=C1Cl,anion,
+N-Nitrosodiethylamine,160,N-Nitrosodiethylamine,0.5448888888888889,102.13699999999994,1.0096,32.67,0.0,2.0,5.0,0.0,7.0,0.0,0.0,CCN(CC)N=O,neutral,
+2-Methylaniline,161,2-Methylaniline,0.5226666666666667,107.15599999999996,1.5772199999999998,26.02,1.0,1.0,2.0,1.0,8.0,0.0,0.0,CC1=C(N)C=CC=C1,neutral,
+Maleic_hydrazide,162,Maleic_hydrazide,0.5067777777777779,112.08799999999997,-0.5245000000000002,65.98,2.0,3.0,1.0,1.0,8.0,0.0,0.0,O=c1ccc(=O)[nH][nH]1,neutral,
+Phenol,163,Phenol,0.5048888888888888,94.11299999999996,1.3922,20.23,1.0,1.0,1.0,1.0,7.0,0.0,0.0,Oc1ccccc1,neutral,
+Dichlorodifluoromethane,164,Dichlorodifluoromethane,0.4968666666666667,120.913,2.0143,0.0,0.0,0.0,0.0,0.0,5.0,4.0,0.0,FC(F)(Cl)Cl,neutral,
+Perfluoro-2-methyl-3-oxahexanoic_acid,165,Perfluoro-2-methyl-3-oxahexanoic_acid,0.4861999999999999,329.04099999999994,3.0123999999999995,43.370000000000005,0.0,3.0,4.0,0.0,20.0,11.0,-1.0,OC(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,anion,PFAS
+Chloroform,166,Chloroform,0.4656666666666666,119.378,1.9864,0.0,0.0,0.0,0.0,0.0,4.0,3.0,0.0,ClC(Cl)Cl,neutral,Trihalomethanes
+Nitroguanidine,167,Nitroguanidine,0.4340666666666666,104.06899999999996,-1.5484999999999998,107.53999999999998,2.0,2.0,1.0,0.0,7.0,0.0,0.0,NC(N)=N[N+]([O-])=O,neutral,
+2_4-Dinitrophenol,168,2_4-Dinitrophenol,0.4329777777777777,183.099,-0.4060000000000001,100.25,0.0,5.0,1.0,0.0,13.0,0.0,-1.0,OC1=C(C=C(C=C1)[N+]([O-])=O)[N+]([O-])=O,anion,
+Dimethyl_methylphosphonate,169,Dimethyl_methylphosphonate,0.4214888888888888,124.07599999999994,1.1021,35.53,0.0,3.0,5.0,0.0,7.0,0.0,0.0,COP(C)(=O)OC,neutral,
+Epichlorohydrin,170,Epichlorohydrin,0.3906,92.52499999999996,0.624,12.53,0.0,1.0,1.0,0.0,5.0,1.0,0.0,ClCC1CO1,neutral,
+Cyanogen_chloride,171,Cyanogen_chloride,0.3844444444444443,61.471,0.70628,23.79,0.0,1.0,0.0,0.0,3.0,1.0,0.0,ClC#N,neutral,
+Benzene,172,Benzene,0.3713333333333333,78.11399999999996,1.6866,0.0,0.0,0.0,0.0,1.0,6.0,0.0,0.0,c1ccccc1,neutral,
+Vinyl_chloride,173,Vinyl_chloride,0.3592,62.49900000000001,1.3687,0.0,0.0,0.0,0.0,0.0,3.0,1.0,0.0,ClC=C,neutral,
+Acephate,174,Acephate,0.3561999999999999,183.1690000000001,1.24,55.400000000000006,1.0,4.0,6.0,0.0,10.0,0.0,0.0,COP(=O)(NC(C)=O)SC,neutral,Organophosphates
+Methyl_bromide,175,Methyl_bromide,0.3560222222222222,94.93899999999998,1.0111,0.0,0.0,0.0,0.0,0.0,2.0,1.0,0.0,CBr,neutral,
+Methyl_tert-butyl_ether,176,Methyl_tert-butyl_ether,0.3560222222222222,88.14999999999993,1.4313,9.23,0.0,1.0,1.0,0.0,6.0,0.0,0.0,COC(C)(C)C,neutral,
+Methyl_ethyl_ketone,177,Methyl_ethyl_ketone,0.3544222222222221,72.10699999999996,0.9854,17.07,0.0,1.0,3.0,0.0,5.0,0.0,0.0,CCC(C)=O,neutral,
+Chloramben,178,Chloramben,0.3340444444444445,205.02000000000004,1.4491,60.16,1.0,3.0,2.0,0.0,12.0,2.0,-1.0,NC1=C(Cl)C(=CC(Cl)=C1)C(O)=O,anion,
+Dicamba,179,Dicamba,0.3335555555555555,220.03100000000003,2.1368,43.370000000000005,0.0,3.0,3.0,0.0,13.0,2.0,-1.0,c1(c(c(ccc1Cl)Cl)OC)C(O)=O,anion,
+Tribromoacetic_acid,180,Tribromoacetic_acid,0.3268666666666666,295.732,1.8158,34.14,0.0,2.0,0.0,0.0,7.0,3.0,-1.0,OC(=O)C(Br)(Br)Br,anion,
+Acrylonitrile,181,Acrylonitrile,0.3110222222222222,53.06400000000001,0.6959799999999999,23.79,0.0,1.0,0.0,0.0,4.0,0.0,0.0,C=CC#N,neutral,
+Perfluorobutanesulfonic_acid,182,Perfluorobutanesulfonic_acid,0.3022666666666666,299.0899999999999,1.9573,51.21,0.0,3.0,3.0,0.0,17.0,9.0,-1.0,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,anion,PFAS
+Bromacil,183,Bromacil,0.2923555555555556,261.1189999999999,1.57852,54.86,1.0,3.0,5.0,1.0,14.0,1.0,0.0,O=C1C(Br)=C(/NC(=O)N1C(CC)C)C,neutral,
+Bromodichloroacetic_acid,184,Bromodichloroacetic_acid,0.2880888888888888,206.83,1.5036,34.14,0.0,2.0,1.0,0.0,7.0,3.0,-1.0,OC(=O)C(Cl)(Cl)Br,anion,
+1_4-Dioxane,185,1_4-Dioxane,0.2869555555555554,88.10599999999995,0.0332,18.46,0.0,2.0,0.0,0.0,6.0,0.0,0.0,C1COCCO1,neutral,
+Terbacil,186,Terbacil,0.2577777777777778,215.66000000000008,1.8839,49.74,0.0,3.0,1.0,0.0,14.0,1.0,-1.0,Cc1[nH]c(=O)n(c(=O)c1Cl)C(C)(C)C,anion,Triazine herbicides
+Acrylamide,187,Acrylamide,0.2517555555555555,71.07899999999998,-0.3423,43.09,1.0,1.0,1.0,0.0,5.0,0.0,0.0,NC(=O)C=C,neutral,
+Acrolein,188,Acrolein,0.2295777777777777,56.06400000000001,0.3712999999999999,17.07,0.0,1.0,1.0,0.0,4.0,0.0,0.0,C=CC=O,neutral,
+Chloromethane,189,Chloromethane,0.1920222222222221,50.48800000000001,0.855,0.0,0.0,0.0,0.0,0.0,2.0,1.0,0.0,CCl,neutral,
+Trichloroacetic_acid,190,Trichloroacetic_acid,0.1406666666666666,162.37900000000002,1.3475,34.14,0.0,2.0,0.0,0.0,7.0,3.0,-1.0,OC(=O)C(Cl)(Cl)Cl,anion,
+Chloramine,191,Chloramine,0.1278666666666666,51.476000000000006,0.0989000000000001,26.02,1.0,1.0,0.0,0.0,2.0,1.0,0.0,NCl,neutral,
+Ethylene_glycol,192,Ethylene_glycol,0.120311111111111,62.06800000000002,-1.029,40.46,2.0,2.0,3.0,0.0,4.0,0.0,0.0,OCCO,neutral,
+Isopropyl_methylphosphonic_acid,193,Isopropyl_methylphosphonic_acid,0.1161999999999999,137.09500000000008,1.6647999999999998,43.370000000000005,0.0,3.0,5.0,0.0,8.0,0.0,-1.0,CC(C)OP(C)(O)=O,anion,
+Bromochloroacetic_acid,194,Bromochloroacetic_acid,0.114711111111111,172.385,0.9371,34.14,0.0,2.0,1.0,0.0,6.0,2.0,-1.0,OC(=O)C(Cl)Br,anion,
+Dibromochloroacetic_acid,195,Dibromochloroacetic_acid,0.1135777777777777,251.281,1.6597,34.14,0.0,2.0,1.0,0.0,7.0,3.0,-1.0,OC(=O)C(Cl)(Br)Br,anion,Trihalomethanes
+4-Nitrophenol,196,4-Nitrophenol,0.0999777777777777,138.10200000000003,-0.0104,57.11000000000001,0.0,3.0,0.0,0.0,10.0,0.0,-1.0,Oc1ccc(cc1)[N+]([O-])=O,anion,
+Formaldehyde,197,Formaldehyde,0.0822222222222221,30.026,-0.1849,17.07,0.0,1.0,0.0,0.0,2.0,0.0,0.0,C=O,neutral,
+Dalapon,198,Dalapon,0.0746888888888888,141.961,1.1711,34.14,0.0,2.0,2.0,0.0,7.0,2.0,-1.0,CC(Cl)(Cl)C(O)=O,anion,
+Chloroacetic_acid,199,Chloroacetic_acid,0.0596222222222222,93.48899999999998,0.2161,34.14,0.0,2.0,1.0,0.0,5.0,1.0,-1.0,OC(=O)CCl,anion,
+Dichloroacetic_acid,200,Dichloroacetic_acid,0.057711111111111,127.93399999999998,0.7809999999999999,34.14,0.0,2.0,1.0,0.0,6.0,2.0,-1.0,OC(=O)C(Cl)Cl,anion,
+Chlorthal,201,Chlorthal,0.0340666666666666,301.896,2.6568,68.28,0.0,4.0,2.0,0.0,16.0,4.0,-2.0,OC(=O)C1=C(Cl)C(Cl)=C(C(O)=O)C(Cl)=C1Cl,anion,
+Nitrate,202,Nitrate,0.0087333333333333,64.02,-1.2383000000000002,62.940000000000005,0.0,2.0,0.0,0.0,4.0,0.0,-1.0,[O-][N+]([O-])=O,anion,
+Nitrite_ion,203,Nitrite_ion,0.0063777777777777,53.061,-1.4874000000000005,64.4,1.0,1.0,0.0,0.0,3.0,0.0,-1.0,[O-]N=O,anion,

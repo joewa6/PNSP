@@ -1,0 +1,60 @@
+chemical_class,system
+PAHs,Chrysene
+PAHs,Phenanthrene
+PAHs,Benz_a_anthracene
+PAHs,Anthracene
+PAHs,Pyrene
+PAHs,Acenaphthene
+PAHs,Benzo_k_fluoranthene
+PAHs,Fluorene
+PAHs,Benzo_g_h_i_perylene
+PAHs,Anthraquinone
+PAHs,Benzo_a_pyrene
+PAHs,Indeno_1_2_3-cd_pyrene
+Phthalates,Dibutyl_1_2-benzenedicarboxylate
+Phthalates,Benzyl_butyl_phthalate
+Phthalates,Dimethyl_phthalate
+Phthalates,Diethyl_phthalate
+PFAS,Perfluorooctanoic_acid
+PFAS,Perfluorooctanesulfonic_acid
+PFAS,Perfluorobutanesulfonic_acid
+PFAS,Perfluoro-2-methyl-3-oxahexanoic_acid
+Triazine herbicides,Atrazine
+Triazine herbicides,Cyanazine
+Triazine herbicides,Deisopropylatrazine
+Triazine herbicides,Simazine
+Triazine herbicides,6-Chloro-1_3_5-triazine-2_4-diamine
+Triazine herbicides,2-Hydroxyatrazine
+Triazine herbicides,Ametryn
+Triazine herbicides,Prometon
+Triazine herbicides,Terbacil
+Organochlorine pesticides,Heptachlor_epoxide_B
+Organochlorine pesticides,Methoxychlor
+Organochlorine pesticides,Chlordane
+Organochlorine pesticides,Endrin
+Organochlorine pesticides,alpha-1_2_3_4_5_6-Hexachlorocyclohexane
+Organochlorine pesticides,Dieldrin
+Organochlorine pesticides,Aldrin
+Organochlorine pesticides,Lindane
+Organochlorine pesticides,Hexachlorobenzene
+Organochlorine pesticides,Kepone
+Organophosphates,Chlorpyrifos
+Organophosphates,Bensulide
+Organophosphates,Phorate
+Organophosphates,Methyl_parathion
+Organophosphates,Fenamiphos
+Organophosphates,Fonofos
+Organophosphates,Ethoprop
+Organophosphates,Malathion
+Organophosphates,Dicrotophos
+Organophosphates,Dimethoate
+Organophosphates,Diazinon
+Organophosphates,Tribufos
+Organophosphates,Terbufos
+Organophosphates,Tebupirimfos
+Organophosphates,Acephate
+Trihalomethanes,Bromoform
+Trihalomethanes,Bromodichloromethane
+Trihalomethanes,Chlorodibromomethane
+Trihalomethanes,Dibromochloroacetic_acid
+Trihalomethanes,Chloroform

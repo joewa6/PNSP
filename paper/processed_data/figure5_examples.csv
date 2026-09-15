@@ -1,0 +1,6 @@
+system,display_name,smiles,occupancy_mean,rank,NetCharge
+Chrysene,Chrysene,c1ccc2c(c1)ccc1c3ccccc3ccc21,0.8688888888888889,65,0.0
+Phenanthrene,Phenanthrene,c1ccc2c(c1)ccc1ccccc12,0.959177777777778,13,0.0
+Dibutyl_1_2-benzenedicarboxylate,"Dibutyl 1,2-benzenedicarboxylate",CCCCOC(=O)c1ccccc1C(=O)OCCCC,0.9045555555555556,45,0.0
+Chlorpyrifos,Chlorpyrifos,CCOP(=S)(OCC)Oc1nc(Cl)c(Cl)cc1Cl,0.9276,33,0.0
+Ammonia,Ammonium,[NH4+],0.9595555555555556,12,1.0

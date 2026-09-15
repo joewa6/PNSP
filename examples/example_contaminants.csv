@@ -1,0 +1,4 @@
+name,smiles,formal_charge
+pyrene,c(c(c(cc1)ccc2)c2cc3)(c1ccc4)c34,0
+phenol,Oc1ccccc1,0
+ethylene_glycol,OCCO,0
