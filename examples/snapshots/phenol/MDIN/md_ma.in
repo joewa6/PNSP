@@ -1,0 +1,14 @@
+production NPT
+ &cntrl
+   imin=0,
+   ntx=5, irest=1,
+   ntxo = 2, ntpr=5000, ntwr=100000, ntwx=5000, ioutfm=1,
+   nstlim=7500000, dt=0.002,
+   ntt=2, temp0=303, ig=-1, vrand=100000,
+   ntp=1, barostat=2, pres0=1.0, taup=1.0, mcbarint=100000,
+   ntc=2, 
+   ntf=2, ntb=2, cut=10., 
+/
+ &ewald 
+   ew_type=0, use_pme=1,
+/

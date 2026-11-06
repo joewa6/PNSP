@@ -1,0 +1,81 @@
+{
+  "record_type": "archival_snapshot_export",
+  "exported_at_utc": "2026-11-06T13:51:35.358757+00:00",
+  "contaminant_id": "Ammonia",
+  "replica_id": "rep1",
+  "historical_build": {
+    "status": "complete",
+    "builder_version": "0.1.0",
+    "git_commit": "4f7839d25fa8a4b2a8343f718b8852950652ece7",
+    "timestamp": "2026-08-04T18:45:54+00:00"
+  },
+  "historical_contaminant_id": "lig_8ce86a6ae65d",
+  "packmol_seed": 264565943,
+  "source_archive_id": "NEW_203_15NS",
+  "source_run": "Ammonia/rep1",
+  "source_trajectory": "prod.nc",
+  "source_frames": 1500,
+  "atoms": 88198,
+  "residue_counts": {
+    "F01": 98,
+    "F02": 102,
+    "F04": 25,
+    "F06": 25,
+    "LIG": 10,
+    "Na+": 40,
+    "WAT": 27586
+  },
+  "topology_net_charge_e": 0.019991248846054077,
+  "snapshots": [
+    {
+      "file": "frame_0000.nc",
+      "source_frame_index": 0,
+      "time_ps": 2010,
+      "box_A_degrees": [
+        96.73064422607422,
+        96.28120422363281,
+        96.54134368896484,
+        90,
+        90,
+        90
+      ],
+      "production_elapsed_ps": 10
+    },
+    {
+      "file": "frame_1499.nc",
+      "source_frame_index": 1499,
+      "time_ps": 17000,
+      "box_A_degrees": [
+        96.56975555419922,
+        96.12106323242188,
+        96.38076782226562,
+        90,
+        90,
+        90
+      ],
+      "production_elapsed_ps": 15000
+    }
+  ],
+  "sha256": {
+    "LIG.frcmod": "bf922808a85c35c2c11e49229322f906ba4bfc17fa247ee240d7221744a82dd5",
+    "LIG.lib": "ca04804a1cb0dfbf02f6503e6a523e4070feccbfa5b28cb2008f1e83bb1a084e",
+    "LIG.mol2": "6f52c52cc4167ef3e519f12b65fc69e175d9d55086c198d02d42f4f2823dad54",
+    "LIG.pdb": "e9753a2761a99981009e5c958a96794e6bd07a44267590a05ad851898e5d4408",
+    "MDIN/md.in_solvent": "00568ead2134952ab631bce0ed04c826145c38b852604ab7d5d373bef6b2506a",
+    "MDIN/md.in_solvent_NVT": "cf210f7e6b75e27169af4628f03ad459ac943839dee23c1287cb0f4b4ce9931a",
+    "MDIN/md.in_thermalize": "ae48c705984123f43c935d917f9ff4585172ce73af167d8a61b1fc9827314f03",
+    "MDIN/md.in_thermalize_NPT_100K": "109e1b6e9074c9f5ff79129ef1596de1a3479486a825f219109303b083f19eb7",
+    "MDIN/md.in_thermalize_NPT_200K": "58abab7a7feef1b8e3837c635356e9296fe8c0a93a532278e3cd28e3614ea520",
+    "MDIN/md.in_thermalize_NPT_300K": "d7eaf2efcae7e52c00fba4b579a1cff89c2856b1548c71c99e9b57da5a719d54",
+    "MDIN/md.in_thermalize_NVT_100K": "8cd7f8209c072281efd5967e034c17f437f42cea75e3f0b218cf5004f5e8e261",
+    "MDIN/md_ma.in": "7c758ba4852d242fc846ade8ca1b31f407f2a35fb3832555deb283dc8dd56cff",
+    "MDIN/min.in": "0998dbb6c625722489bca16a7fa2a99edca5445438627239c0b87d8e318d46e3",
+    "MDIN/min.in_restrainBackbone": "33f37b2d3782be9349394e669fef176e49e53aa67db9a3a82e1d255d4cd2f27b",
+    "MDIN/min.in_solvent": "d0c79b5f6863920de36934283b31d811c1915924960182cc4a959b5e02cae62e",
+    "frame_0000.nc": "8af87346eaa15c5007c0d1f8a18b70484e61d3e053adb6e83a64e197975c5c55",
+    "frame_1499.nc": "44b4bbe751c09f623cddd5c09bb9bb58d11669c545eb62aad761c627083d395f",
+    "system.prmtop": "a6ffe3636fcb5b6e0b49a1d4e060498238a7006002697237b602552ac2c9c129"
+  },
+  "note": "Historical build metadata is preserved from run_manifest.json. Export time is not simulation time. Snapshots retain every atom and are not a continuous trajectory.",
+  "historical_input_smiles": "N"
+}

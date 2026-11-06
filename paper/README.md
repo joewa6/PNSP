@@ -9,7 +9,9 @@ From the repository root:
 
 ```bash
 python paper/scripts/make_main_figures.py
+python paper/scripts/make_structure_figure.py
 python paper/scripts/make_supplementary_figures.py
+python paper/scripts/make_sensitivity_figures.py
 python paper/scripts/make_tables.py
 python paper/scripts/verify_release.py
 ```
@@ -19,7 +21,9 @@ Outputs are written to `paper/generated/`.
 | Script | Outputs |
 |---|---|
 | `make_main_figures.py` | Figures 3–8 |
+| `make_structure_figure.py` | Figure S1 |
 | `make_supplementary_figures.py` | Figures S2–S13 |
+| `make_sensitivity_figures.py` | Figures S14–S16 |
 | `make_tables.py` | Tables S1–S2 |
 | `verify_release.py` | Data and output validation |
 
@@ -31,6 +35,9 @@ Outputs are written to `paper/generated/`.
 The principal screen contains 203 contaminant systems, three replicas per
 system, and ten contaminant copies per replica. Production trajectories were
 15 ns long and saved every 10 ps.
+The long-timescale comparison uses one replica per contaminant for 20
+representative systems extended to 200 ns. Sensitivity plots use the frozen
+processed results; rendering them does not refit the models.
 
 For each copy, occupancy is the fraction of frames in which the minimum
 contaminant–PET heavy-atom distance is less than 4.0 Å. System occupancy is the

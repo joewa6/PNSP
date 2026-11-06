@@ -11,6 +11,11 @@ import shutil
 import subprocess
 from pathlib import Path
 
+if __package__:
+    from .provenance import execution_provenance
+else:
+    from provenance import execution_provenance
+
 import numpy as np
 
 
@@ -119,6 +124,7 @@ def main() -> int:
     parser.add_argument("--ligand", required=True, type=Path, help="Prepared ligand directory")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--copies", type=int, default=10)
+    parser.add_argument("--replica", default=None, help="Replica identifier for provenance")
     parser.add_argument("--seed", type=int, required=True, help="Explicit positive Packmol seed")
     parser.add_argument(
         "--pet-unit", default="NP", help="Unit name stored in NP_correct.lib"
@@ -224,6 +230,11 @@ def main() -> int:
         )
     box = coordinate_box(output / "system.inpcrd")
     manifest = {
+        "provenance": execution_provenance(
+            "build_system", ligand_manifest.get("name"), args.replica,
+            [pet / name for name in PET_FILES] + [ligand / name for name in LIGAND_FILES],
+            output,
+        ),
         "pet_charge_e": args.pet_charge,
         "ligand_charge_e": ligand_charge,
         "ligand_copies": observed_copies,

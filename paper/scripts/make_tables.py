@@ -40,7 +40,7 @@ def main() -> None:
     table_s2 = screen[["rank", "contaminant"]].rename(
         columns={"rank": "Rank", "contaminant": "Contaminant"}
     )
-    table_s2["Contaminant"] = table_s2.Contaminant.str.replace("_", " ", regex=False)
+    table_s2["Contaminant"] = table_s2.Contaminant.str.replace("_", " ", regex=False).str.strip()
     table_s2.to_csv(OUTPUT/"Table_S2_contaminant_ranking.csv", index=False)
     print("Generated submitted Tables S1 and S2")
 

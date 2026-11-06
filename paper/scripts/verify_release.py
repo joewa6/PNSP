@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-from common import DATA, OUTPUT
+from common import DATA, OUTPUT, PAPER, REPOSITORY
 
 
 def close(label: str, observed: float, expected: float, atol: float = 5e-6) -> None:
@@ -18,6 +19,24 @@ def close(label: str, observed: float, expected: float, atol: float = 5e-6) -> N
 
 
 def main() -> None:
+    for row in pd.read_csv(PAPER / "manifest.csv").itertuples():
+        path = REPOSITORY / row.public_file
+        if hashlib.sha256(path.read_bytes()).hexdigest() != row.public_sha256:
+            raise RuntimeError(f"Checksum mismatch: {row.public_file}")
+        frame = pd.read_csv(path)
+        if frame.shape != (row.rows, row.columns):
+            raise RuntimeError(f"Dimension mismatch: {row.public_file}")
+    long = pd.read_csv(DATA / "convergence_long_summary.csv").set_index("system")
+    cumulative = pd.read_csv(DATA / "convergence_long_cumulative.csv")
+    if len(long) != 20 or not long.index.is_unique or len(cumulative) != 800:
+        raise RuntimeError("Expected twenty systems and 800 cumulative observations")
+    wide = cumulative.pivot(index="system", columns="end_ns", values="occupancy")
+    for time in (15, 100, 200):
+        np.testing.assert_allclose(wide[time], long.loc[wide.index, f"occupancy_{time}ns"])
+    close("20-system 15/200 ns Spearman", spearmanr(long.occupancy_15ns, long.occupancy_200ns).statistic, .947368421)
+    close("20-system 15/200 ns MAE", (long.occupancy_15ns-long.occupancy_200ns).abs().mean(), .095666167)
+    close("20-system 100/200 ns Spearman", spearmanr(long.occupancy_100ns, long.occupancy_200ns).statistic, .992481203)
+    close("20-system 100/200 ns MAE", (long.occupancy_100ns-long.occupancy_200ns).abs().mean(), .019575)
     screen = pd.read_csv(DATA/"screen_summary.csv")
     copies = pd.read_csv(DATA/"copy_metrics.csv")
     events = pd.read_csv(DATA/"contact_events.csv")
@@ -64,6 +83,13 @@ def main() -> None:
     if int(multicopy.perm_p_bh_reject.sum()) != 0:
         raise RuntimeError("Expected 0/203 BH-adjusted multicopy hits")
 
+    repeated = pd.read_csv(DATA / "neutral_repeated_cv_performance.csv")
+    trio = repeated.loc[repeated.feature_set.eq("Size-linked trio")]
+    if len(trio) != 20:
+        raise RuntimeError("Expected 20 matched CV partitions")
+    close("reduced GAM mean CV R2", trio.heldout_r2.mean(), .744701, atol=5e-6)
+    close("reduced GAM SD CV R2", trio.heldout_r2.std(ddof=1), .008713, atol=5e-6)
+
     figures = ["Figure_3_descriptor_distributions", "Figure_4_rank_resolved_occupancy",
                "Figure_5_representative_association_modes", "Figure_6_chemical_classes",
                "Figure_7_model_performance", "Figure_8_neutral_descriptor_model"]
@@ -71,7 +97,9 @@ def main() -> None:
         2:"occupancy_uncertainty", 3:"full_screen_convergence", 4:"long_trajectory_convergence",
         5:"loading_control", 6:"occupancy_event_decomposition", 7:"hydration",
         8:"binary_mixtures", 9:"descriptor_importance", 10:"surface_charge_control",
-        11:"MW_class_robustness", 12:"RESP_AM1BCC", 13:"multicopy_independence"}.items()]
+        11:"MW_class_robustness", 12:"RESP_AM1BCC", 13:"multicopy_independence",
+        1:"PET_structural_characterization", 14:"cutoff_sensitivity",
+        15:"descriptor_collinearity_and_sensitivity", 16:"MW_response_comparison"}.items()]
     missing = [str(OUTPUT/f"{stem}.{suffix}") for stem in figures for suffix in ("png", "pdf")
                if not (OUTPUT/f"{stem}.{suffix}").is_file()]
     missing += [str(OUTPUT/name) for name in ("Table_S1_GAM_permutation_importance.csv",

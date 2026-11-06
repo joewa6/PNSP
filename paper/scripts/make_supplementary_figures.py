@@ -109,19 +109,36 @@ def s3():
 
 def s4():
     d = pd.read_csv(DATA/"convergence_long_cumulative.csv")
-    order = ["Ammonia", "Bisphenol_A", "Chloroform", "Ethylene_glycol", "Phenol", "Pyrene", "Toluene"]
-    colors = dict(zip(order, plt.cm.tab10(np.linspace(0, .9, 7))))
-    fig = plt.figure(figsize=(9, 5.8)); grid = fig.add_gridspec(2, 2, height_ratios=(1.25, 1))
-    axes = [fig.add_subplot(grid[0, :]), fig.add_subplot(grid[1, 0]), fig.add_subplot(grid[1, 1])]
+    order = ["Ammonia", "Bisphenol_A", "Chloroform", "Ethylene_glycol", "Phenol", "Pyrene", "Toluene",
+             "Bis_2-ethylhexyl_hexanedioate", "Chlorpyrifos", "Aldrin", "Chlorthal",
+             "Perfluorooctanoic_acid", "O-Desmethylvenlafaxine", "Acephate",
+             "2_4-Dichlorophenoxyacetic_acid", "Anatoxin_a", "Cyanazine",
+             "17alpha-Ethinylestradiol", "Nitrate", "Dibutyl_1_2-benzenedicarboxylate"]
+    if set(d.system) != set(order):
+        raise ValueError("Expected the twenty manuscript convergence systems")
+    display = {"Bis_2-ethylhexyl_hexanedioate": "Bis(2-ethylhexyl) adipate",
+               "Perfluorooctanoic_acid": "PFOA", "2_4-Dichlorophenoxyacetic_acid": "2,4-D",
+               "Dibutyl_1_2-benzenedicarboxylate": "Dibutyl phthalate"}
+    colors = dict(zip(order, plt.cm.tab20(np.linspace(0, 1, len(order)))))
+    fig = plt.figure(figsize=(10, 6.8)); grid = fig.add_gridspec(3, 2, height_ratios=(1.25, .26, 1))
+    axes = [fig.add_subplot(grid[0, :]), fig.add_subplot(grid[2, 0]), fig.add_subplot(grid[2, 1])]
+    legend_ax = fig.add_subplot(grid[1, :]); legend_ax.axis("off")
     for system in order:
         g = d.loc[d.system.eq(system)]
-        axes[0].plot(g.end_ns, g.occupancy, lw=1.55, color=colors[system], label=system.replace("_", " "))
+        axes[0].plot(g.end_ns, g.occupancy, lw=1.25, color=colors[system], label=display.get(system, system.replace("_", " ")))
     axes[0].axvline(15, color="#333333", ls="--", lw=.9); axes[0].axvline(100, color="#888888", ls=":", lw=.9)
     axes[0].set(xlim=(5, 200), ylim=(-.02, 1.02), xlabel="Cumulative production time (ns)", ylabel="Mean occupancy")
-    axes[0].legend(frameon=False, fontsize=6.8, ncol=2, loc="lower right"); clean(axes[0])
+    handles, labels = axes[0].get_legend_handles_labels()
+    legend_ax.legend(handles, labels, frameon=False, fontsize=5.8, ncol=5,
+                     loc="center", columnspacing=1, handlelength=1.7, handletextpad=.4,
+                     title="Contaminant (colours apply to panels A–C)", title_fontsize=6.2)
+    clean(axes[0])
     w = d.pivot(index="system", columns="end_ns", values="occupancy")
     compare(axes[1], w[15], w[200], "Occupancy at 15 ns", "Occupancy at 200 ns", BLUE)
     compare(axes[2], w[100], w[200], "Occupancy at 100 ns", "Occupancy at 200 ns", GREEN)
+    for ax, time in [(axes[1], 15), (axes[2], 100)]:
+        ax.texts[0].set_position((.06, .87))
+        ax.scatter(w[time], w[200], s=15, c=[colors[s] for s in w.index], zorder=3)
     for label, ax in zip("ABC", axes):
         ax.text(.02, .98, label, transform=ax.transAxes, va="top", fontweight="bold", fontsize=11)
     fig.subplots_adjust(left=.085, right=.99, bottom=.09, top=.98, wspace=.25, hspace=.34)

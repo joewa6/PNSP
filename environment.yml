@@ -4,6 +4,8 @@ channels:
 dependencies:
   - python=3.11
   - ambertools>=24
+  - packmol
+  - netcdf4
   - openbabel
   - rdkit>=2024.03
   - mdanalysis>=2.7

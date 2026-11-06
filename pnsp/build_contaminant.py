@@ -17,6 +17,11 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+if __package__:
+    from .provenance import execution_provenance
+else:
+    from provenance import execution_provenance
+
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -130,6 +135,7 @@ def prepare_one(
     microstate_source: str,
     ph: float,
     pht: float,
+    source_csv: Path | None = None,
 ) -> None:
     name = safe_name(str(row["name"]))
     input_smiles = str(row["smiles"]).strip()
@@ -209,6 +215,10 @@ def prepare_one(
     if missing:
         raise RuntimeError(f"{name}: missing Amber products: {missing}")
     manifest = {
+        "provenance": execution_provenance(
+            "build_contaminant", name, None,
+            [source_csv] if source_csv is not None else [], output,
+        ),
         "name": name,
         "input_smiles": input_smiles,
         "selected_smiles": selected_smiles,
@@ -254,7 +264,7 @@ def main() -> int:
         raise ValueError("Compound names are not unique after filename sanitization")
     args.output.mkdir(parents=True, exist_ok=True)
     for _, row in table.iterrows():
-        prepare_one(row, args.output, args.microstate_source, args.ph, args.pht)
+        prepare_one(row, args.output, args.microstate_source, args.ph, args.pht, args.csv)
     return 0
 
 

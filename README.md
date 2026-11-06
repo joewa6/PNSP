@@ -4,6 +4,10 @@ PNSP is the computational workflow used to investigate the association of
 environmentally relevant small-molecule contaminants with an atomistic
 polyethylene terephthalate nanoplastic (PET-NPP) model.
 
+Associated paper: *Molecular Determinants of Contaminant Association with PET
+Nanoplastics Revealed by Atomistic Simulations*,
+[doi:10.1021/acs.jcim.6c02127](https://doi.org/10.1021/acs.jcim.6c02127).
+
 The workflow supports:
 
 - contaminant preparation and GAFF2/AM1-BCC parameterization;
@@ -80,6 +84,7 @@ python pnsp/build_system.py \
     --ligand build/ligands/phenol \
     --output build/systems/phenol/rep1 \
     --copies 10 \
+    --replica rep1 \
     --seed 314159
 ```
 
@@ -144,9 +149,28 @@ The `paper/` directory contains:
 
 - processed numerical data underlying the manuscript figures and tables;
 - scripts for regenerating the reported numerical figures and tables; and
-- a checksum manifest for the released datasets and scripts.
+- a checksum manifest for the released numerical datasets.
 
 See [`paper/README.md`](paper/README.md) for reproduction instructions.
+
+Representative all-atom production snapshots of phenol and ammonium systems
+are provided in [`examples/snapshots/`](examples/snapshots/README.md), together
+with matching topologies, ligand parameters, original MD input files, and
+provenance. Solvent and counterions are retained; full trajectories are not
+distributed in this repository.
+
+## Execution metadata
+
+Each preparation, MD and trajectory-analysis stage writes a JSON manifest with
+its settings and file checksums. The `provenance` record identifies the stage,
+contaminant, replica (where applicable), UTC recording time, executing Git
+commit, worktree state, and input/output paths. Pass `--replica` when building
+a system; MD preparation inherits its identifiers from the system manifest.
+Unavailable identifiers or Git metadata are recorded as `null`, not inferred.
+These records describe new executions, not reconstructed historical runs.
+Generated manifests contain local paths; review them before sharing.
+
+Run the small CPU-only tests with `python -m unittest discover -s tests -v`.
 
 ## Repository structure
 

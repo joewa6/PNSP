@@ -12,6 +12,11 @@ import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
+if __package__:
+    from .provenance import execution_provenance
+else:
+    from provenance import execution_provenance
+
 
 PET_HEAVY_MASK = ":1-250&!@H="
 
@@ -129,6 +134,11 @@ def main() -> int:
 
     source = args.system.resolve()
     output = (args.output or source).resolve()
+    source_manifest = source / "system_manifest.json"
+    system_provenance = (
+        json.loads(source_manifest.read_text()).get("provenance", {})
+        if source_manifest.is_file() else {}
+    )
     for filename in ("system.prmtop", "system.inpcrd"):
         if not (source / filename).is_file():
             raise FileNotFoundError(source / filename)
@@ -144,7 +154,8 @@ def main() -> int:
     for stage in stages:
         (mdin_dir / f"{stage.name}.in").write_text(stage.mdin, encoding="utf-8")
     commands = [command(args.engine, stage, mdin_dir) for stage in stages]
-    shell_lines = ["#!/usr/bin/env bash", "set -euo pipefail", ""]
+    shell_lines = ["#!/usr/bin/env bash", "set -euo pipefail",
+                   'cd -- "$(dirname -- "$0")"', ""]
     shell_lines.extend(" ".join(shlex.quote(part) for part in item) for item in commands)
     run_script = output / "run_md.sh"
     run_script.write_text("\n".join(shell_lines) + "\n", encoding="utf-8")
@@ -173,6 +184,11 @@ def main() -> int:
             completed.append(stage.name)
 
     manifest = {
+        "provenance": execution_provenance(
+            "run_md", system_provenance.get("contaminant_id"),
+            system_provenance.get("replica_id"),
+            [source / "system.prmtop", source / "system.inpcrd"], output,
+        ),
         "status": "complete" if args.execute and len(completed) == len(stages) else "prepared",
         "engine": args.engine,
         "production_ns": args.production_ns,

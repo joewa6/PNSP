@@ -8,6 +8,11 @@ import hashlib
 import json
 from pathlib import Path
 
+if __package__:
+    from .provenance import execution_provenance
+else:
+    from provenance import execution_provenance
+
 import MDAnalysis as mda
 import numpy as np
 import pandas as pd
@@ -111,13 +116,15 @@ def main() -> int:
         dimensions = np.asarray(timestep.dimensions, dtype=float)
         if dimensions.size < 6 or not np.all(np.isfinite(dimensions[:3])) or np.any(dimensions[:3] <= 0):
             raise RuntimeError(f"Frame {frame_index} has no valid periodic box")
-        pairs = capped_distance(
+        pairs, distances = capped_distance(
             ligand_atoms.positions,
             pet_atoms.positions,
             max_cutoff=args.cutoff_A,
             box=dimensions,
-            return_distances=False,
+            return_distances=True,
         )
+        # capped_distance includes its upper bound; the manuscript criterion is strict.
+        pairs = pairs[distances < args.cutoff_A]
         if len(pairs):
             bound[frame_index, np.unique(atom_to_copy_array[pairs[:, 0]])] = True
 
@@ -181,6 +188,9 @@ def main() -> int:
         timeseries.to_csv(output / "bound_timeseries.csv.gz", index=False)
 
     manifest = {
+        "provenance": execution_provenance(
+            "analyse_occupancy", system, replica, [topology, *trajectories], output,
+        ),
         "system": system,
         "replica": replica,
         "topology": str(topology),

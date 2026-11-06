@@ -15,6 +15,7 @@ BUILD_ROOT=${BUILD_ROOT:-"$ROOT/example_output"}
   --ligand "$BUILD_ROOT/ligands/phenol" \
   --output "$BUILD_ROOT/phenol/rep1" \
   --copies 10 \
+  --replica rep1 \
   --seed 314159
 
 "$PYTHON" "$ROOT/pnsp/run_md.py" \
